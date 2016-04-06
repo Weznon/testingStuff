@@ -17,7 +17,8 @@ problem3 = do putStrLn " What is your name?"
 prompt :: String -> IO String
 prompt x = do putStrLn x
               getLine
-              
+
+
 main :: IO ()
 main = do putStrLn "Problem 1"
           problem1
