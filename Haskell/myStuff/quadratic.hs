@@ -1,14 +1,18 @@
 
-quadratic :: (Num t, Floating t, Fractional t) => t -> t -> t -> [t]
-quadratic a b c = [(-b + sqrt(b ^ 2 - 4 * a * c)) / (2 * a), (-b - sqrt(b ^ 2 - 4 * a * c)) / (2 * a)]
+quadratic :: (Float, Float, Float) -> (Float, Float)
+quadratic (a, b, c) = (x1, x2)
+                  where
+                      x1 = e + sqrt d / (2 * a)
+                      x2 = e - sqrt d / (2 * a)
+                      d = b * b - 4 * a * c
+                      e = - b / (2 * a)
 main :: IO ()
 main = do
           a <- do putStrLn "Input a:"
                   getLine
-          b <- do putStrLn "Input a:"
+          b <- do putStrLn "Input b:"
                   getLine
-          c <- do putStrLn "Input a:"
+          c <- do putStrLn "Input c:"
                   getLine
-          let x = quadratic (read a :: Float) (read b :: Float) (read c :: Float)
-          putStrLn "The roots of x^2 + 3x + "
-          print x
+          putStrLn ("The roots of " ++ a ++ "x^2 + " ++ b ++ "x + " ++ c)
+          print $ quadratic (read a :: Float, read b :: Float, read c :: Float)
