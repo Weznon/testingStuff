@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package testinggit;
-
+import java.util.Scanner;
 /**
  *
  * @author Plotnw
@@ -15,7 +15,10 @@ public class TestingGit {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Hello World");
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Problem 1");
+        int sumTo = Integer.parseInt(reader.nextLine());
+        System.out.println((sumTo * (sumTo + 1)) / 2);
     }
     
 }
