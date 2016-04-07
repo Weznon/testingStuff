@@ -1,8 +1,11 @@
-prompt :: IO ()
+prompt :: String -> IO String
 prompt x = do putStrLn x
-              readLn
-isPrime 2 = 0
-isPrime x = do let y = sqrt x
-                    if y `mod` x == 0
-                    then return False
-                    else isPrime x - 1
+              getLine
+
+isPrime :: (Enum t, Num t, Integral t, Enum a, Num a, Integral a) => a -> Bool
+isPrime k = null [ x | x <- [2..floor(sqrt (fromIntegral k))], k `mod` x  == 0]
+main :: IO ()
+main = do   a <- prompt "Input number to test"
+            if isPrime (read a :: Int) && (read a :: Int) > 1
+            then putStrLn (a ++ " is prime")
+            else putStrLn (a ++ " is not prime")
