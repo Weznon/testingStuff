@@ -8,8 +8,8 @@ main = do
                         then (read a :: Int)
                         else (read b :: Int)
           let smaller = if (read b :: Int) > (read a :: Int)
-                        then (read b :: Int)
-                        else (read a :: Int)
+                        then (read a :: Int)
+                        else (read b :: Int)
           if larger `mod` smaller == 0
           then putStrLn (show larger ++ " is divisible by " ++ show smaller )
           else putStrLn (show larger ++ " is not divisible by " ++ show smaller)
