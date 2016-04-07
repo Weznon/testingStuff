@@ -4,6 +4,7 @@ prompt x = do putStrLn x
 
 isPrime :: (Enum t, Num t, Integral t, Enum a, Num a, Integral a) => a -> Bool
 isPrime k = null [ x | x <- [2..floor(sqrt (fromIntegral k))], k `mod` x  == 0]
+
 main :: IO ()
 main = do   a <- prompt "Input number to test"
             if isPrime (read a :: Int) && (read a :: Int) > 1
