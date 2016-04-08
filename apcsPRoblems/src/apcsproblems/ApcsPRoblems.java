@@ -25,7 +25,11 @@ public class ApcsPRoblems {
              int sum = problem1 (n);
              System.out.println(sum);
         } else if (problem == 2) {
-            problem2;
+            System.out.println("Put a character: ");
+            char x = (reader.nextLine().charAt(0));
+            System.out.println("Put a string: ");
+            String y = reader.nextLine();
+            problem2(x, y);
         } else if (problem == 3) {
             problem3;
         } else if (problem == 4) {
@@ -42,8 +46,13 @@ public class ApcsPRoblems {
         return x * (x + 1) / 2;
     }
   
-    public static int problem2 (char x, String y) {{
-        
+    public static int problem2 (char x, String y) {
+        int sum = 0;
+        for (int z =0;z < y.length();z++) {
+            if (y.charAt(z) == x) {
+                sum++;
+            }
     }
     }
+    
 }
