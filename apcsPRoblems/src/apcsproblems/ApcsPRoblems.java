@@ -12,14 +12,18 @@ import java.util.Scanner;
 public class ApcsPRoblems {
 
     /**
+     * @param x
      * @param args the command line arguments
      */
-    public static 
+    
+            
     public static void main(String[] args) {
         Scanner reader = new Scanner(System.in);
         int problem = Integer.parseInt(reader.nextLine());
         if (problem == 1) {
-            problem1;
+            int n = Integer.parseInt(reader.nextLine());
+             int sum = problem1 (n);
+             System.out.println(sum);
         } else if (problem == 2) {
             problem2;
         } else if (problem == 3) {
@@ -34,5 +38,12 @@ public class ApcsPRoblems {
             problem7;
         }
     }
-    
+    public static int problem1 (int x) {
+        return x * (x + 1) / 2;
+    }
+  
+    public static int problem2 (char x, String y) {{
+        
+    }
+    }
 }
