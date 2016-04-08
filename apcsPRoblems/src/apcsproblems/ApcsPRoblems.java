@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package apcsproblems;
+import static java.lang.Math.sqrt;
 import java.util.Scanner;
 /**
  *
@@ -29,7 +30,7 @@ public class ApcsPRoblems {
             char x = (reader.nextLine().charAt(0));
             System.out.println("Put a string: ");
             String y = reader.nextLine();
-            problem2(x, y);
+            System.out.println(problem2(x, y));
         } else if (problem == 3) {
             problem3;
         } else if (problem == 4) {
@@ -52,7 +53,12 @@ public class ApcsPRoblems {
             if (y.charAt(z) == x) {
                 sum++;
             }
+    } return sum;
     }
+    public static double[] problem3 (double a, double b, double c) {
+        double x1 = (sqrt(b * b - 4 * a * c) - a) / (2 * a);
+        double x2 = (sqrt(b * b - 4 * a * c) - a) / (2 * a);
+        double arrex[] = {x1, x2};
+        return arrex;
     }
-    
 }
