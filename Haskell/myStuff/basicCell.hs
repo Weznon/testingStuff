@@ -1,7 +1,5 @@
 whichRule :: [Int] -> Int
-whichRule [a, b, c] = do
-                        let sumTest = 2 * a + 3 * b + 4 * c
-                        if a == 1
+whichRule [a, b, c] = if a == 1
                           then if b == 1
                                   then if c == 1
                                         then 0
