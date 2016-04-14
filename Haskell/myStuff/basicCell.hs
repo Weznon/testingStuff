@@ -23,6 +23,7 @@ nextCell [a, b, c] = do
 generateNextLine :: [Int] -> [Int]
 generateNextLine [c0, c1, c2, c3, c4, c5, c6, c7, c8] = [nextCell [0, c0, c1], nextCell [c0, c1, c2], nextCell [c1, c2, c3], nextCell [c2, c3, c4], nextCell [c3, c4, c5], nextCell [c4, c5, c6], nextCell [c5, c6, c7], nextCell [c6, c7, c8], nextCell [c7, c8, 0]]
 
+--Currently set to rule 110
 ruleBinding :: [Int]
 ruleBinding = [0, 1, 1, 0, 1, 1, 1, 0]
 
