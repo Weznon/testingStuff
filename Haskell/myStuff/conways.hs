@@ -34,6 +34,8 @@ liveOrDie list x y = do
 
 nextLine list z = [liveOrDie list x z | x <- [0..length list - 1]]
 
+--Make a NextLine' that iterates a set number of times
+
 main :: IO ()
 main = do
         print $ grid !! 0
