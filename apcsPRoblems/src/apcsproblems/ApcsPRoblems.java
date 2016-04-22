@@ -32,7 +32,13 @@ public class ApcsPRoblems {
             String y = reader.nextLine();
             System.out.println(problem2(x, y));
         } else if (problem == 3) {
-            problem3;
+            System.out.println("Put a: ");
+            double a = Double.parseDouble(reader.nextLine());
+            System.out.println("Put b: ");
+            double b = Double.parseDouble(reader.nextLine());
+            System.out.println("Put c: ");
+            double c = Double.parseDouble(reader.nextLine());
+            System.out.println(problem3(a, b, c));
         } else if (problem == 4) {
             problem4;
         } else if (problem == 5) {
