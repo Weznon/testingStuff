@@ -4,7 +4,7 @@ grid = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-        0, 0, 0, 0, 8, 0, 1, 1, 1, 0,
+        0, 0, 0, 0, 0, 0, 1, 1, 1, 0,
         0, 0, 0, 0, 0, 0, 1, 0, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 1, 0, 0,
         0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -43,9 +43,14 @@ liveOrDie board x y = do
 generateNextBoard :: (Eq a, Num a, Num t) => [a] -> [t]
 generateNextBoard board = [liveOrDie board x y | x <- [0..9], y <- [0..9]]
 
+--figure out why the fuck this doesn't work
+--generates the next board, then again, again...initial board
+--need to remake generateNextBoard to be recursive, to allow it to generate abritrary board
+--Figured it out: board never changes
+--TODO: Actually get it to print the stuff
 lifeGen :: (Eq a, Num a, Eq t, Num t) => [t] -> a -> [[t]]
 lifeGen board iteration
-    |iteration == 0     = board
+    |iteration == 0     = [board]
     |otherwise          = generateNextBoard board : lifeGen board (iteration - 1)
 main = do
           let grid2 = [liveOrDie grid x y | x <- [0..9], y <- [0..9]]
