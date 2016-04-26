@@ -20,10 +20,10 @@ printGrid list = do
                     print [list !! x | x <-[80..89]]
                     print [list !! x | x <-[90..99]]
 
-coordGet list x y = if x /= 0 || x /= 9 || y /=0 || y /= 9
-                    then list !! (10 * y + x)
-                    else 0
-getSurround list x y = sum [coordGet list (x - w) (y - z) | w <- [-1..1], z <- [-1..1]] - coordGet list x y
+coordGet list x y = if x > 9 || y > 9 || x < 0 || y < 0
+                    then 0
+                    else list !! (10 * y + x)
+getSurround list x y = sum [coordGet list (x + w) (y + z) | w <- [-1..1], z <- [-1..1]] - coordGet list x y
 
 liveOrDie list x y = do
                         let value = coordGet list x y
