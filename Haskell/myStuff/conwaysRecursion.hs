@@ -22,12 +22,6 @@ printGrid list = do
                     print [list !! x | x <-[80..89]]
                     print [list !! x | x <-[90..99]]
 
-
-coordGet list x y = if x > 9 || y > 9 || x < 0 || y < 0
-                    then 0
-                    else list !! (10 * y + x)
-getSurround list x y = sum [coordGet list (x + w) (y + z) | w <- [-1..1], z <- [-1..1]] - coordGet list x y
-
 coordGet :: (Num a) => [a] -> Int -> Int -> a
 coordGet board x y = if x < 0 || x > 9 || y < 0 || y > 9
                     then 0
