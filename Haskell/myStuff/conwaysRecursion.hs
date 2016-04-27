@@ -44,6 +44,8 @@ liveOrDie board x y = do
 
 --Attempt at recursively defining it, but it was way too slow
 --Too slow
+--TOO SLOW BECAUSE YOU ARENT COMPILING IT YOU DOLT
+--Compile with ghc -O2 conwaysRecursion.hs once fixed
 --generateNextBoard board 0 = grid
 --generateNextBoard board n = [liveOrDie (generateNextBoard board (n-1)) x y | x <- [0..9], y <- [0..9]]
 generateNextBoard board  = [liveOrDie board x y | x <- [0..9], y <- [0..9]]
