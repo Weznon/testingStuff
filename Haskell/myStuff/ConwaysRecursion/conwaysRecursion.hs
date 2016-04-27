@@ -45,7 +45,7 @@ liveOrDie board x y = do
 generateNextBoard :: (Eq a, Num a) => t -> a -> [Integer]
 generateNextBoard board 0 = grid
 generateNextBoard board n = [liveOrDie (generateNextBoard board (n-1)) x y | y <- [0..9], x <- [0..9]]
-
+--Originally had x first, but that flips the axis, since it does x = 1 && y = [0..9] then x=2..., but it should be the other way around.
 
 lifeGen :: (Eq a, Num a) => [Integer] -> a -> [[Integer]]
 lifeGen board iteration
