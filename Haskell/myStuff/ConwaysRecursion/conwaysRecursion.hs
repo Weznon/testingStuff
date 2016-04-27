@@ -44,7 +44,7 @@ liveOrDie board x y = do
 
 generateNextBoard :: (Eq a, Num a) => t -> a -> [Integer]
 generateNextBoard board 0 = grid
-generateNextBoard board n = [liveOrDie (generateNextBoard board (n-1)) x y | x <- [0..9], y <- [0..9]]
+generateNextBoard board n = [liveOrDie (generateNextBoard board (n-1)) x y | y <- [0..9], x <- [0..9]]
 
 
 lifeGen :: (Eq a, Num a) => [Integer] -> a -> [[Integer]]
@@ -52,26 +52,18 @@ lifeGen board iteration
     |iteration == 0     = [board]
     |otherwise          = generateNextBoard board iteration : lifeGen board (iteration - 1)
 
+printGrids :: (Show t, Integral t) => [[t]] -> Int -> IO ()
+printGrids boards iteration
+    |iteration == 0     = printGrid (boards !! 0)
+    |iteration `mod` 2 /= 0   = do
+                            putStrLn"--------------------"
+                            printGrids boards (iteration - 1)
+    |iteration `mod` 2 == 0 = do
+                            printGrid (boards !! (iteration `div` 2))
+                            printGrids boards (iteration - 1)
+
+
 main :: IO ()
 main = do
           let boards = lifeGen grid 10
-          printGrid (boards !! 0)
-          putStrLn"----------------------"
-          printGrid (boards !! 1)
-          putStrLn"----------------------"
-          printGrid (boards !! 2)
-          putStrLn"----------------------"
-          printGrid (boards !! 3)
-          putStrLn"----------------------"
-          printGrid (boards !! 4)
-          putStrLn"----------------------"
-          printGrid (boards !! 5)
-          putStrLn"----------------------"
-          printGrid (boards !! 6)
-          putStrLn"----------------------"
-          printGrid (boards !! 7)
-          putStrLn"----------------------"
-          printGrid (boards !! 8)
-          putStrLn"----------------------"
-          printGrid (boards !! 9)
-          putStrLn"----------------------"
+          printGrids boards 20
