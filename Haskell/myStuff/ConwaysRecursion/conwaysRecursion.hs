@@ -56,11 +56,11 @@ printGrids :: (Show t, Integral t) => [[t]] -> Int -> IO ()
 printGrids boards iteration
     |iteration == 0     = printGrid (boards !! 0)
     |iteration `mod` 2 /= 0   = do
-                            putStrLn"--------------------"
-                            printGrids boards (iteration - 1)
+                                putStrLn"--------------------"
+                                printGrids boards (iteration - 1)
     |iteration `mod` 2 == 0 = do
-                            printGrid (boards !! (iteration `div` 2))
-                            printGrids boards (iteration - 1)
+                                printGrid (boards !! (iteration `div` 2))
+                                printGrids boards (iteration - 1)
 
 
 main :: IO ()
