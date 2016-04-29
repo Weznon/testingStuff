@@ -4,5 +4,13 @@
 --isPali [1,2,3,2,1]
 --true
 
-isPali :: [t] -> Bool
-isPali
+myReverse :: [t] -> [t]
+myReverse [] = []
+myReverse [x] = [x]
+myReverse (x:xs) = myReverse xs ++ [x]
+
+isPali :: (Eq t) => [t] -> Bool
+isPali x = x == myReverse x
+
+main :: IO ()
+main = putStrLn "Hello"
