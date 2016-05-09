@@ -13,4 +13,4 @@ main :: IO()
 main = do
           putStrLn "What number to calculate the hailstone sequence for?"
           a <- getLine
-          print $ (hailstoneSequence (read a))
+          print (hailstoneSequence (read a))
