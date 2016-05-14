@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0057)http://www.seas.upenn.edu/~cis194/lectures/12-unsafe.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>CIS194</title>
+
+  <script type="text/javascript" src="./12_files/MathJax.js"></script>
+  <link href="./12_files/style.css" rel="stylesheet" type="text/css">
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+
+  <div id="canvas">
+    <div id="nav"><p><strong>CIS 194</strong>: <a href="http://www.seas.upenn.edu/~cis194/">Home</a> | <a href="http://www.seas.upenn.edu/~cis194/lectures.html">Lectures &amp; Assignments</a> | <a href="http://www.seas.upenn.edu/~cis194/policies.html">Policies</a> | <a href="http://www.seas.upenn.edu/~cis194/resources.html">Resources</a> | <a href="http://www.seas.upenn.edu/~cis194/final.html">Final Project</a> | <a href="http://www.seas.upenn.edu/~cis194/fall14/">Older version</a></p></div>
+
+    <div id="content">
+      
+      <h1 id="unsafe-haskell">Unsafe Haskell</h1>
+<p>CIS 194 Week 12<br>15 April 2015</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">{-# LANGUAGE OverloadedStrings #-}</span>
+<span class="ot">{-# LANGUAGE TupleSections     #-}</span>
+<span class="kw">import </span><span class="dt">Control.Applicative</span>
+<span class="kw">import </span><span class="dt">Control.Monad</span>
+<span class="kw">import </span><span class="dt">Data.ByteString</span> (<span class="dt">ByteString</span>)
+<span class="kw">import </span><span class="dt">Data.IORef</span>
+<span class="kw">import </span><span class="dt">Data.List</span>
+<span class="kw">import </span><span class="dt">Data.Word</span>
+<span class="kw">import </span><span class="dt">Foreign.Marshal.Alloc</span>
+<span class="kw">import </span><span class="dt">Foreign.Marshal.Array</span>
+<span class="kw">import </span><span class="dt">Foreign.Ptr</span>
+<span class="kw">import </span><span class="dt">Foreign.Storable</span>
+<span class="kw">import </span><span class="dt">System.IO.Unsafe</span>
+<span class="kw">import </span><span class="dt">Unsafe.Coerce</span>
+
+<span class="kw">import qualified</span> <span class="dt">Data.ByteString</span> <span class="kw">as</span> <span class="dt">BS</span></code></pre>
+<p>Think back to the first day of class. We learned that there are four things that characterize the Haskell language. Namely, Haskell is:</p>
+<p><strong>Functional</strong></p>
+<ul>
+<li>Functions are first class values</li>
+<li>Evaulation is based on expressions rather than statements</li>
+</ul>
+<p><strong>Pure</strong></p>
+<ul>
+<li>No mutable state</li>
+<li>No side effects</li>
+<li>Computations are repeatable</li>
+</ul>
+<p><strong>Lazy</strong></p>
+<ul>
+<li>Expressions are not evaluated until they are needed</li>
+<li>Functions use call-by-name semantics</li>
+</ul>
+<p><strong>Statically Typed</strong></p>
+<ul>
+<li>No runtime type errors</li>
+<li>The type of every expression is known <em>statically</em> (at compile time)</li>
+</ul>
+<p>However, we saw later on that this is not entirely true. We can use the <code>IO</code> Monad to write programs that have side effects, and we can use <code>seq</code> and bang patterns to force expressions to be strictly evaluated. However, the lies continue…</p>
+<h2 id="mutable-state">Mutable State</h2>
+<p>It isn’t too difficult to get mutable state in Haskell. To work with mutable state, we introduce a new type called <code>IORef</code>. An <code>IORef</code> is basically just a reference to some mutable cell in memory. The value in the IO Ref can be manipulated using a few simple functions in the <code>Data.IORef</code> module:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- Initialize an IO Ref</span>
+<span class="ot">newIORef    ::</span> a <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">IORef</span> a)
+
+<span class="co">-- Read from an IO Ref</span>
+<span class="ot">readIORef   ::</span> <span class="dt">IORef</span> a <span class="ot">-&gt;</span> <span class="dt">IO</span> a
+
+<span class="co">-- Write to an IO Ref</span>
+<span class="ot">writeIORef  ::</span> <span class="dt">IORef</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">IO</span> ()
+
+<span class="co">-- Update the value of an IO Ref</span>
+<span class="ot">modifyIORef ::</span> <span class="dt">IORef</span> a <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> a) <span class="ot">-&gt;</span> <span class="dt">IO</span> ()</code></pre>
+<p>Of course, IO Refs live exclusively in the <code>IO</code> Monad since modifying mutable state is a side effect. It should not come as a huge surprise that mutable state is possible in the IO Monad. Of course, you could implement mutable state yourself using operations that we already know about. You could use a file to store mutable state and use <code>readFile</code> and <code>writeFile</code> to get and modify the state. However, this would be incredibly inefficient. If you absolutely need mutable state in Haskell (you probably don’t) then IO Refs are a much better way to go.</p>
+<p>Now, let’s take a look at few examples of how you might want to use IO Refs. First, you are given a list of <code>a</code>s and an element of type <code>a</code>, and you want to figure out how many times the element appears in the list. Let’s try to do this using an IO Ref:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">count ::</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">Int</span>
+count xs x <span class="fu">=</span> <span class="kw">do</span>
+  r <span class="ot">&lt;-</span> newIORef <span class="dv">0</span>
+  forM_ xs <span class="fu">$</span> \y <span class="ot">-&gt;</span>
+    when (x <span class="fu">==</span> y) <span class="fu">$</span>
+      modifyIORef r (<span class="fu">+</span><span class="dv">1</span>)
+  readIORef r</code></pre>
+<p>Basically, <code>count</code> just initializes an IO Ref with the value <code>0</code> and then for each element in the input list, it increments the value inside the IO Ref. There are a few things wrong with this implementation. For one, it looks very… <em>imperative</em>. It is not very elegant compared to the wholemeal style version:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">count2 ::</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Int</span>
+count2 xs x <span class="fu">=</span> length <span class="fu">$</span> findIndices (<span class="fu">==</span>x) xs</code></pre>
+<p>But style aside, the first implementation of <code>count</code> is still not very good. It is pretty cumbersome and annoying that <code>count</code> returns its result in the <code>IO</code> Monad. This counting operation really should be <em>pure</em>, since it does not have any global side effects. To make it pure, we can use the <code>unsafePerformIO</code> function. Use of <code>unsafePerformIO</code> is generally discouraged, but is <em>allowable</em> in cases where the <code>IO</code> operation is definitely safe. Using IO Refs locally is usually safe, so we can <em>reluctantly</em> use <code>unsafePerformIO</code> here:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">count3 ::</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Int</span>
+count3 xs x <span class="fu">=</span> unsafePerformIO <span class="fu">$</span> <span class="kw">do</span>
+  r <span class="ot">&lt;-</span> newIORef <span class="dv">0</span>
+  forM_ xs <span class="fu">$</span> \y <span class="ot">-&gt;</span>
+    when (x <span class="fu">==</span> y) <span class="fu">$</span>
+      modifyIORef' r (<span class="fu">+</span><span class="dv">1</span>)
+  readIORef r</code></pre>
+<p>Now we have a function that operates as we want it to, and is implemented with an IO Ref under the hood. The question we want to ask is: is it desirable to write functions in this way?</p>
+<p>From a style standpoint, the answer is absolutely not. This code is ugly and makes use of <code>unsafePerformIO</code>, which is dubious at best. However, if style is not reason enough to convince you that this implementation is bad, then consider performance. It turns out that this code is more than 7x slower than the pure version. The reason for this is that GHC is optimized for wholemeal style programming. IO Refs cannot be implemented in pure Haskell, therefore the runtime system has a lot more work to do in order to execute this code.</p>
+<p>So when would it actually be useful to use mutable state? Consider the following scenario: you have a tree structure an you want to assign unique identifiers to each node in the tree.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Tree</span> a <span class="fu">=</span> <span class="dt">Node</span> (<span class="dt">Tree</span> a) a (<span class="dt">Tree</span> a)
+            <span class="fu">|</span> <span class="dt">Empty</span>
+              <span class="kw">deriving</span> (<span class="dt">Show</span>)</code></pre>
+<p>We could do this in pure Haskell, but it is a bit annoying since we need to know always keep track of how many identifiers we have used so far.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">assignIDs ::</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Tree</span> (<span class="dt">Int</span>, a)
+assignIDs <span class="fu">=</span> snd <span class="fu">.</span> assignIDsHelper <span class="dv">0</span>
+    <span class="kw">where</span> assignIDsHelper id <span class="dt">Empty</span>        <span class="fu">=</span> (id, <span class="dt">Empty</span>)
+          assignIDsHelper id (<span class="dt">Node</span> l x r) <span class="fu">=</span> (id2, <span class="dt">Node</span> l' (id1, x) r')
+              <span class="kw">where</span> (id1, l') <span class="fu">=</span> assignIDsHelper id l
+                    (id2, r') <span class="fu">=</span> assignIDsHelper (id1 <span class="fu">+</span> <span class="dv">1</span>) r</code></pre>
+<p>Instead, it would be nice to have a <em>mutable</em> counter that can keep track of how many IDs have been assigned so far. We can implement this counter using an IO Ref:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">newCounter ::</span> <span class="dt">IO</span> (<span class="dt">IO</span> <span class="dt">Int</span>)
+newCounter <span class="fu">=</span> <span class="kw">do</span>
+  r <span class="ot">&lt;-</span> newIORef <span class="dv">0</span>
+  return <span class="fu">$</span> <span class="kw">do</span>
+    v <span class="ot">&lt;-</span> readIORef r
+    writeIORef r (v <span class="fu">+</span> <span class="dv">1</span>)
+    return v</code></pre>
+<p>The type of <code>newCounter</code> is a bit strange. <code>newCounter</code> is an IO action that initializes another IO action which increments an internal counter and returns the resulting value. Consider the following IO action:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">printCounts ::</span> <span class="dt">IO</span> ()
+printCounts <span class="fu">=</span> <span class="kw">do</span>
+  c <span class="ot">&lt;-</span> newCounter
+  print <span class="fu">=&lt;&lt;</span> c
+  print <span class="fu">=&lt;&lt;</span> c
+  print <span class="fu">=&lt;&lt;</span> c</code></pre>
+<p>When we evaulate this action, we get:</p>
+<pre class="code"><code>*&gt; printCounts
+0
+1
+2
+</code></pre>
+<p>Each time the action <code>c</code> is evaluated, the internal counter in incremented, so the next time it is used, it has a greater value. Now, we can use this to rewrite the <code>assignIDs</code> function:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">assignIDs2 ::</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Tree</span> (<span class="dt">Int</span>, a))
+assignIDs2 t <span class="fu">=</span> <span class="kw">do</span>
+  c <span class="ot">&lt;-</span> newCounter
+  <span class="kw">let</span> helper <span class="dt">Empty</span> <span class="fu">=</span> return <span class="dt">Empty</span>
+      helper (<span class="dt">Node</span> l x r) <span class="fu">=</span> <span class="kw">do</span>
+        l' <span class="ot">&lt;-</span> helper l
+        id <span class="ot">&lt;-</span> c
+        r' <span class="ot">&lt;-</span> helper r
+        return <span class="fu">$</span> <span class="dt">Node</span> l' (id, x) r'
+  helper t</code></pre>
+<p>Alternatively, we could write it using Applicative Functors, since the value on the counter does not effect the control flow of the program:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">assignIDs3 ::</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">IO</span> (<span class="dt">Tree</span> (<span class="dt">Int</span>, a))
+assignIDs3 t <span class="fu">=</span> <span class="kw">do</span>
+  c <span class="ot">&lt;-</span> newCounter
+  <span class="kw">let</span> helper <span class="dt">Empty</span> <span class="fu">=</span> return <span class="dt">Empty</span>
+      helper (<span class="dt">Node</span> l x r) <span class="fu">=</span> <span class="dt">Node</span>
+                            <span class="fu">&lt;$&gt;</span> helper l
+                            <span class="fu">&lt;*&gt;</span> ( (,x) <span class="fu">&lt;$&gt;</span> c )
+                            <span class="fu">&lt;*&gt;</span> helper r
+  helper t</code></pre>
+<h2 id="type-safety">Type Safety</h2>
+<p>The phrase “type safety” gets thrown around a lot, especially in the world of functional programming. You can ask two type programming language theorists what type safety is and you will get five different opinions. However, most people agree that type safe languages prevent <em>type errors</em>. This means that you can’t simply use a value of one type as a value of a different type.</p>
+<p><strong>Enter Unsafe Coerce</strong></p>
+<p>Haskell is <em>not</em> type safe. There is a handy little function in the <code>Unsafe.Coerce</code> module called <code>unsafeCoerce</code> that allows you to do the unthinkable; use a value of one type as a value of a different type. Consider this simple example:</p>
+<pre class="code"><code>*&gt; let x = 1 :: Float
+*&gt; let y = unsafeCoerce x :: Int
+*&gt; y
+5360320512
+</code></pre>
+<p>Something strange happened, but it was not a catastrophic failure. Why is the value of <code>y</code> <code>5360320512</code>? Well, first we defined <code>x</code> to be the floating point number <code>1</code>, then we coerced it to be an <code>Int</code>. Floating point number are encoded very differently in binary than integers are. It just so happens that the floating point representation of <code>1</code> is equivalent to the integer representation of <code>5360320512</code>. Who would’ve thought?</p>
+<p>One thing to note is that nothing went horribly wrong in this example because <code>Float</code>s and <code>Int</code>s are both encoded using 32 bits. This means that GHCi has no trouble accessing <code>x</code> as an <code>Int</code> instead of a <code>Float</code>, since the size of the chunk of memory it was looking in was correct. Let’s see what happens when we try to access a datatype that is <em>larger</em> than the memory chunk we are looking in:</p>
+<pre class="code"><code>*&gt; let x = 1 :: Int
+*&gt; let y = unsafeCoerce x :: (Int, Int)
+*&gt; y
+Segmentation fault: 11
+</code></pre>
+<p>Well that’s not good. We crashed GHCi using only <em>pure</em> code. Clearly this is not the behavior you would expect from a type safe language.</p>
+<p><strong>Memory Safety</strong></p>
+<p>Memory safe languages are languages that do not allow arbitrary access to the underlying bit patterns in memory. This is tightly linked to type safety since being able to manipulate individual bits can allow programmers to <em>abuse</em> the type system. It also means that the programmer can attempt to de-reference arbitrary memory locations. Memory is managed by the operating system and if you try to access memory that the operating system has not allocated to you, you will get a segmentation fault. Clearly Haskell isn’t memory safe since we got a segfault in the example above. But it gets worse.</p>
+<p>Let’s think about everyone’s favorite <em>unsafe</em> language, C. C has a wonderful type system; everything is just a sequence of bits. This includes pointers to memory locations. In C, you can take an arbitrary sequence of bits, treat it as a memory address and attempt to grab whatever value is stored there. This is just about the most unsafe thing you can do, but also allows programmers to write low level and high performance code. This is why people choose C for systems programming.</p>
+<p>Luckily, Haskell has pointer manipulation too! Here is an excellent way to generate a segfault in a hurry:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="fu">*&gt;</span> peek nullPtr
+<span class="dt">Segmentation</span> fault<span class="fu">:</span> <span class="dv">11</span></code></pre>
+<p>This is exactly equivalent to writing <code>*null</code> in C. When you try to dereference the null pointer, you will always get a segfault since the null pointer is never a valid memory location.</p>
+<p>Haskell also has a number of facilities to allocate memory buffers on the stack and the heap. There is only one logical next step…</p>
+<p><strong>Smashing the Stack for Fun and Profit</strong></p>
+<p>Consider the following <em>extremely secure</em> login system. The users are stored in a list of username, password pairs.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">users ::</span> [(<span class="dt">ByteString</span>, <span class="dt">ByteString</span>)]
+users <span class="fu">=</span>  [ (<span class="st">"spj"</span>,    <span class="st">"i-&lt;3-GHC"</span>)
+         , (<span class="st">"hcurry"</span>, <span class="st">"programsareproofs"</span>)
+         ]
+
+<span class="ot">getPwd ::</span> <span class="dt">ByteString</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">ByteString</span>
+getPwd user <span class="fu">=</span> snd <span class="fu">&lt;$&gt;</span> find ((<span class="fu">==</span> user) <span class="fu">.</span> fst) users</code></pre>
+<p>The person who implemented this wanted to be <em>smart</em> about password comparisons. Rather than simply using Haskell’s built in equality operator <code>(==)</code>, a 16-byte memory buffer is allocated on the stack and then the two <code>ByteStrings</code> are copied in to it. The first <code>ByteString</code> occupies bytes 0-15 and the second one is in bytes 16-31 (because passwords can’t be longer than 16 characters, right?)</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">checkPwd ::</span> <span class="dt">ByteString</span> <span class="ot">-&gt;</span> <span class="dt">ByteString</span> <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">Bool</span>
+checkPwd s1 s2 <span class="fu">=</span>
+  allocaArray <span class="dv">32</span> <span class="fu">$</span> \b1 <span class="ot">-&gt;</span> <span class="kw">do</span>
+    <span class="kw">let</span> l1 <span class="fu">=</span> BS.length s1
+        l2 <span class="fu">=</span> BS.length s2
+        b2 <span class="fu">=</span> plusPtr b1 <span class="dv">16</span>
+    pokeArray b2 (BS.unpack s2)
+    when (l2 <span class="fu">&lt;</span> <span class="dv">16</span>) <span class="fu">$</span> pokeArray (plusPtr b2 l2) (replicate (<span class="dv">16</span> <span class="fu">-</span> l2) (<span class="dv">0</span><span class="ot"> ::</span> <span class="dt">Word8</span>))
+    pokeArray b1 (BS.unpack s1)
+    when (l1 <span class="fu">&lt;</span> <span class="dv">16</span>) <span class="fu">$</span> pokeArray (plusPtr b1 l1) (replicate (<span class="dv">16</span> <span class="fu">-</span> l1) (<span class="dv">0</span><span class="ot"> ::</span> <span class="dt">Word8</span>))
+    and <span class="fu">&lt;$&gt;</span> forM [<span class="dv">0</span><span class="fu">..</span><span class="dv">15</span>] (\i <span class="ot">-&gt;</span> <span class="kw">do</span>
+      c1 <span class="ot">&lt;-</span> peekByteOff b1<span class="ot"> i ::</span> <span class="dt">IO</span> <span class="dt">Word8</span>
+      c2 <span class="ot">&lt;-</span> peekByteOff b2 i
+      return <span class="fu">$</span> c1 <span class="fu">==</span> c2)</code></pre>
+<p>To login, you simply type your username and password. The password for that username then gets looked up in the <code>users</code> table and compared to what you typed. If there is a match, then you are logged in!</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">login ::</span> <span class="dt">IO</span> ()
+login <span class="fu">=</span> <span class="kw">do</span>
+  putStr <span class="st">"Username: "</span>
+  user <span class="ot">&lt;-</span> BS.getLine
+  putStr <span class="st">"Password: "</span>
+  guess <span class="ot">&lt;-</span> BS.getLine
+  <span class="kw">case</span> getPwd user <span class="kw">of</span>
+    <span class="dt">Just</span> actual <span class="ot">-&gt;</span> <span class="kw">do</span>
+      match <span class="ot">&lt;-</span> checkPwd guess actual
+      <span class="kw">if</span> match <span class="kw">then</span>
+          putStrLn <span class="st">"You are logged in!"</span>
+      <span class="kw">else</span>
+          putStrLn <span class="st">"Incorrect password"</span>
+    <span class="dt">Nothing</span> <span class="ot">-&gt;</span>
+        putStrLn <span class="st">"No such user"</span></code></pre>
+<p>Now, knowing about the questionable way that <code>checkPwd</code> was written, how can we exploit this code?</p>
+<p>This login system is actually vulnerable to a very simple buffer overflow attack. Let’s think about how the passwords are compared. First, the exprected password is copied in to the second half of some 32-byte memory buffer. Next, whatever the user typed is copied in to the first half of the buffer.</p>
+<p>The key vulnerability here is that the length of the input is not checked before it is copied in. This means that is the string that the user types is longer than 16 characters, then it will overflow into the part of the buffer that is reserved for the expected password. This means that if the user types a 32 character password in which the first 16 and last 16 bytes match, then he/she will always get logged in! Let’s try it out:</p>
+<pre class="code"><code>*&gt; login
+Username: hcurry
+Password: WriteSafeHaskellWriteSafeHaskell
+You are logged in!
+</code></pre>
+<p>Type safe languages are usually not prone to buffer overflow attacks. Unfortunately, Haskell isn’t so lucky!</p>
+<hr>
+<p><code>Generated 2015-04-17 09:25:02.845221</code></p>
+
+    </div>
+
+    <div id="footer"><center>
+      <font size="-2">Powered
+      by <a href="http://community.haskell.org/~ndm/shake/">shake</a>,
+      <a href="http://jaspervdj.be/hakyll/index.html">hakyll</a>,
+      <a href="http://johnmacfarlane.net/pandoc/">pandoc</a>,
+      <a href="http://projects.haskell.org/diagrams">diagrams</a>,
+      and <a href="http://www.andres-loeh.de/lhs2tex/">lhs2TeX</a>.
+      </font></center><font size="-2">
+    </font></div><font size="-2">
+  </font></div><font size="-2">
+
+
+
+</font></body></html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0053)http://www.seas.upenn.edu/~cis194/lectures/05-IO.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>CIS194</title>
+
+  <script type="text/javascript" src="./5_files/MathJax.js"></script>
+  <link href="./5_files/style.css" rel="stylesheet" type="text/css">
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+
+  <div id="canvas">
+    <div id="nav"><p><strong>CIS 194</strong>: <a href="http://www.seas.upenn.edu/~cis194/">Home</a> | <a href="http://www.seas.upenn.edu/~cis194/lectures.html">Lectures &amp; Assignments</a> | <a href="http://www.seas.upenn.edu/~cis194/policies.html">Policies</a> | <a href="http://www.seas.upenn.edu/~cis194/resources.html">Resources</a> | <a href="http://www.seas.upenn.edu/~cis194/final.html">Final Project</a> | <a href="http://www.seas.upenn.edu/~cis194/fall14/">Older version</a></p></div>
+
+    <div id="content">
+      
+      <h1 id="io">I/O</h1>
+<p>CIS 194 Week 5<br>18 February 2015</p>
+<h2 id="further-reading">Further reading</h2>
+<p><a href="http://book.realworldhaskell.org/read/io.html">Real World Haskell, Chapter 7</a> <a href="http://learnyouahaskell.com/input-and-output">Learn You a Haskell, Chapter 9</a></p>
+<h2 id="the-problem-with-purity">The problem with purity</h2>
+<p>Remember that Haskell is <em>pure</em>. This means two primary things:</p>
+<ol style="list-style-type: decimal">
+<li><p>Functions may not have any external effects. For example, a function may not print anything on the screen. Functions may only compute their outputs.</p></li>
+<li><p>Functions may not depend on external stuff. For example, they may not read from the keyboard, or filesystem, or network. Functions may depend only on their inputs—put another way, functions should give the same output for the same input every time.</p></li>
+</ol>
+<p>But—sometimes we <em>do</em> want to be able to do stuff like this! If the only thing we could do with Haskell is write functions which we can then evaluate at the ghci prompt, it would be theoretically interesting but practically useless.</p>
+<p>In fact, it <em>is</em> possible to do these sorts of things with Haskell, but it looks very different than in most other languages.</p>
+<h2 id="the-io-type">The <code>IO</code> type</h2>
+<p>The solution to the conundrum is a special type called <code>IO</code>. Values of type <code>IO a</code> are <em>descriptions of</em> effectful computations, which, if executed would (possibly) perform some effectful I/O operations and (eventually) produce a value of type <code>a</code>. There is a level of indirection here that’s crucial to understand. A value of type <code>IO a</code>, <em>in and of itself</em>, is just an inert, perfectly safe thing with no effects. It is just a <em>description</em> of an effectful computation. One way to think of it is as a <em>first-class imperative program</em>.</p>
+<p>As an illustration, suppose you have</p>
+<pre><code>c :: Cake
+</code></pre>
+<p>What do you have? Why, a delicious cake, of course. Plain and simple.</p>
+<p>By contrast, suppose you have</p>
+<pre><code>r :: Recipe Cake
+</code></pre>
+<p>What do you have? A cake? No, you have some <em>instructions</em> for how to make a cake, just a sheet of paper with some writing on it.</p>
+<p>Not only do you not actually have a cake, merely being in possession of the recipe has no effect on anything else whatsoever. Simply holding the recipe in your hand does not cause your oven to get hot or flour to be spilled all over your floor or anything of that sort. To actually produce a cake, the recipe must be <em>followed</em> (causing flour to be spilled, ingredients mixed, the oven to get hot, <em>etc.</em>).</p>
+<p>In the same way, a value of type <code>IO a</code> is just a “recipe” for producing a value of type <code>a</code> (and possibly having some effects along the way). Like any other value, it can be passed as an argument, returned as the output of a function, stored in a data structure, or (as we will see shortly) combined with other <code>IO</code> values into more complex recipes.</p>
+<p>So, how do values of type <code>IO a</code> actually ever get executed? There is only one way: the Haskell compiler looks for a special value</p>
+<pre><code>main :: IO ()
+</code></pre>
+<p>which will actually get handed to the runtime system and executed. That’s it! Think of the Haskell runtime system as a master chef who is the only one allowed to do any cooking.</p>
+<p>If you want your recipe to be followed then you had better make it part of the big recipe (<code>main</code>) that gets handed to the master chef. Of course, <code>main</code> can be arbitrarily complicated, and will usually be composed of many smaller <code>IO</code> computations.</p>
+<p>So let’s write our first actual, executable Haskell program! We can use the function</p>
+<pre><code>putStrLn :: String -&gt; IO ()
+</code></pre>
+<p>which, given a <code>String</code>, returns an <code>IO</code> computation that will (when executed) print out that <code>String</code> on the screen. So we simply put this in a file called <code>Hello.hs</code>:</p>
+<pre><code>main = putStrLn "Hello, Haskell!"
+</code></pre>
+<p>Then typing <code>runhaskell Hello.hs</code> at a command-line prompt results in our message getting printed to the screen! We can also use <code>ghc --make Hello.hs</code> to produce an executable version called <code>Hello</code> (or <code>Hello.exe</code> on Windows).</p>
+<p>GHC looks for a module named <code>Main</code> to find the <code>main</code> action. If you omit a module header on a Haskell file, the module name defaults to <code>Main</code>, so this often works out, even if the filename is not <code>Main.hs</code>. If you wish to use a module name other than <code>Main</code>, you have to use a command-line option when calling <code>ghc</code> or <code>runhaskell</code>. Say you have a file <code>Something.hs</code> that looks like</p>
+<pre><code>module Something where
+main :: IO ()
+main = putStrLn "Hi out there!"
+</code></pre>
+<p>You can compile that with <code>ghc --make -main-is Something Something.hs</code>. Note the double dashes with <code>--make</code> but only a single dash with <code>-main-is</code>.</p>
+<h2 id="there-is-no-string-inside-an-io-string">There is no <code>String</code> “inside” an <code>IO String</code></h2>
+<p>Many new Haskell users end up at some point asking a question like “I have an <code>IO String</code>, how do I turn it into a <code>String</code>?”, or, “How do I get the <code>String</code> out of an <code>IO String</code>”? Given the above intuition, it should be clear that these are nonsensical questions: a value of type <code>IO String</code> is a description of some computation, a <em>recipe</em>, for generating a <code>String</code>. There is no <code>String</code> “inside” an <code>IO String</code>, any more than there is a cake “inside” a cake recipe. To produce a <code>String</code> (or a delicious cake) requires actually <em>executing</em> the computation (or recipe). And the only way to do that is to give it (perhaps as part of some larger <code>IO</code> value) to the Haskell runtime system, via <code>main</code>.</p>
+<h2 id="sequencing-io-actions">Sequencing <code>IO</code> actions</h2>
+<p>It would all be a little silly if a Haskell program could do only one thing – the thing in the <code>main</code> action. We need a way of doing one thing and then the next. Haskell provides a special notation for sequencing actions, called <code>do</code> notation. <code>do</code> notation is actually very powerful and can be used for wondrous things beyond sequencing I/O actions, but its full power is a story for another day (perhaps several other days).</p>
+<p>Here is an action that uses <code>do</code> notation to accomplish very little. I’m not naming it <code>main</code>, so it can only be accessed from within GHCi, but that’s OK for our purposes.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">sillyExchange ::</span> <span class="dt">IO</span> ()
+sillyExchange <span class="fu">=</span> <span class="kw">do</span>
+  putStrLn <span class="st">"Hello, user!"</span>
+  putStrLn <span class="st">"What is your name?"</span>
+  name <span class="ot">&lt;-</span> getLine
+  putStrLn <span class="fu">$</span> <span class="st">"Pleased to meet you, "</span> <span class="fu">++</span> name <span class="fu">++</span> <span class="st">"!"</span></code></pre>
+<h2 id="io-types"><code>IO</code> types</h2>
+<p>Before unpacking that example, it’s helpful to look at some types. (Gee, in Haskell, it’s <em>always</em> helpful to look at some types.)</p>
+<p>First, let’s start with <code>()</code>. The <code>()</code> type is pronounced “unit” and has one value, <code>()</code>. It’s as if it was declared with</p>
+<pre><code>data () = ()
+</code></pre>
+<p>though that’s not valid Haskell syntax. <code>()</code> is a pretty silly type at first: it conveys absolutely no information, because it has only one constructor that takes no arguments. But, that’s exactly what we need in certain I/O actions: <code>sillyExchange</code> is an I/O action that produces no (interesting) value at the end. Haskell insists that it has to produce <em>something</em>, so we say it produces <code>()</code>. (If you squint at <code>()</code>, it looks a little like <code>void</code> from C/C++ or Java.)</p>
+<p>Here are some types:</p>
+<pre><code>putStrLn :: String -&gt; IO ()
+getLine  :: IO String
+</code></pre>
+<p>We’ve seen uses of <code>putStrLn</code> before. When sequencing actions with <code>do</code> notation, each “bare” line (lines that don’t have a <code>&lt;-</code> in them) must have type <code>IO ()</code>. Happily, <code>putStrLn "foo"</code> indeed has type <code>IO ()</code>. These actions get performed in order when processing a <code>do</code> block.</p>
+<p><code>getLine</code>, on the other hand, has type <code>IO String</code>. That means that <code>getLine</code> is an action that produces a <code>String</code>. To get the <code>String</code> out of <code>getLine</code>, we use <code>&lt;-</code> to bind a new variable <code>name</code> to that <code>String</code>. Here’s the catch: you can do this <em>only</em> in a <code>do</code> block defining an <code>IO</code> action. There’s no useful way to run <code>getLine</code> in code that’s not part of an <code>IO</code> action. Trying to do this is like getting the cake out of the cake recipe – it’s very silly indeed.</p>
+<p>It’s important to note that <code>name &lt;- getLine</code> does not have a type; that is not a Haskell expression. It’s just part of the syntax of <code>do</code> notation. You can’t include <code>name &lt;- getLine</code> as part of some larger expression, only as a line in a <code>do</code> block.</p>
+<h2 id="a-slightly-larger-example">A slightly larger example</h2>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">jabber ::</span> <span class="dt">IO</span> ()
+jabber <span class="fu">=</span> <span class="kw">do</span>
+  wocky <span class="ot">&lt;-</span> readFile <span class="st">"jabberwocky.txt"</span>
+  <span class="kw">let</span> wockylines <span class="fu">=</span> drop <span class="dv">2</span> (lines wocky)  <span class="co">-- discard title</span>
+  count <span class="ot">&lt;-</span> printFirstLines wockylines
+  putStrLn <span class="fu">$</span> <span class="st">"There are "</span> <span class="fu">++</span> show count <span class="fu">++</span> <span class="st">" stanzas in Jabberwocky."</span>
+
+<span class="ot">printFirstLines ::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> <span class="dt">IO</span> <span class="dt">Int</span>
+printFirstLines ls <span class="fu">=</span> <span class="kw">do</span>
+  <span class="kw">let</span> first_lines <span class="fu">=</span> extractFirstLines ls
+  putStr (unlines first_lines)
+  return <span class="fu">$</span> length first_lines
+
+<span class="ot">extractFirstLines ::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> [<span class="dt">String</span>]
+extractFirstLines []         <span class="fu">=</span> []
+extractFirstLines [_]        <span class="fu">=</span> []
+extractFirstLines (<span class="st">""</span> <span class="fu">:</span> first <span class="fu">:</span> rest)
+  <span class="fu">=</span> first <span class="fu">:</span> extractFirstLines rest
+extractFirstLines (_ <span class="fu">:</span> rest) <span class="fu">=</span> extractFirstLines rest</code></pre>
+<p>There’s a bunch of interesting things in there:</p>
+<ol style="list-style-type: decimal">
+<li><p><code>readFile :: FilePath -&gt; IO String</code>, where <code>type FilePath = String</code>. This function reads in the entire contents of a file into a <code>String</code>.</p></li>
+<li><p><code>let</code> statements within <code>do</code> blocks. It would be awfully silly if all of the pure programming we have covered were unusable from within <code>do</code> blocks. The <code>let</code> statement in a <code>do</code> block allows you to create a new variable bound to a <em>pure</em> value. Note the lack of <code>in</code>. Remember that when you say <code>let x = y</code>, <code>x</code> and <code>y</code> have the same types. When you say <code>x &lt;- y</code>, <code>y</code> has to have a type like <code>IO a</code>, and then <code>x</code> has type <code>a</code>.</p></li>
+<li><p><code>return :: a -&gt; IO a</code>. If you need to turn a pure value into an I/O action, use <code>return</code>. <code>return</code> is a regular old function in Haskell. It is <em>not</em> the same as <code>return</code> in C/C++ or Java! Within an I/O action, <code>let x = y</code> is the same as <code>x &lt;- return y</code>, but the former is vastly preferred: it makes the purity of <code>y</code> more obvious.</p></li>
+</ol>
+<p>There are many functions that you can use to do I/O. See the family of modules starting with <code>System.</code>, and in particular, <code>System.IO</code>.</p>
+<h1 id="more-types">More Types!</h1>
+<h2 id="record-syntax">Record Syntax</h2>
+<p>Suppose we have a data type such as</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">D</span> <span class="fu">=</span> <span class="dt">C</span> <span class="dt">T1</span> <span class="dt">T2</span> <span class="dt">T3</span></code></pre>
+<p>We could also declare this data type with <em>record syntax</em> as follows:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">D</span> <span class="fu">=</span> <span class="dt">C</span> {<span class="ot"> field1 ::</span> <span class="dt">T1</span>,<span class="ot"> field2 ::</span> <span class="dt">T2</span>,<span class="ot"> field3 ::</span> <span class="dt">T3</span> }</code></pre>
+<p>where we specify not just a type but also a <em>name</em> for each field stored inside the <code>C</code> constructor. This new version of <code>D</code> can be used in all the same ways as the old version (in particular we can still construct and pattern-match on values of type <code>D</code> as <code>C v1 v2 v3</code>). However, we get some additional benefits.</p>
+<ol style="list-style-type: decimal">
+<li><p>Each field name is automatically a <em>projection function</em> which gets the value of that field out of a value of type <code>D</code>. For example, <code>field2</code> is a function of type</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">field2 ::</span> <span class="dt">D</span> <span class="ot">-&gt;</span> <span class="dt">T2</span></code></pre>
+<p>Before, we would have had to implement <code>field2</code> ourselves by writing</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">field2 (<span class="dt">C</span> _ f _) <span class="fu">=</span> f</code></pre>
+<p>This gets rid of a lot of boilerplate if we have a data type with many fields!</p></li>
+<li><p>There is special syntax for <em>constructing</em>, <em>modifying</em>, and <em>pattern-matching</em> on values of type <code>D</code> (in addition to the usual syntax for such things).</p>
+<p>We can <em>construct</em> a value of type <code>D</code> using syntax like</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="dt">C</span> { field3 <span class="fu">=</span> <span class="fu">...</span>, field1 <span class="fu">=</span> <span class="fu">...</span>, field2 <span class="fu">=</span> <span class="fu">...</span> }</code></pre>
+<p>with the <code>...</code> filled in by expressions of the right type. Note that we can specify the fields in any order.</p>
+<p>Suppose we have a value <code>d :: D</code>. We can <em>modify</em> <code>d</code> using syntax like</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">d { field3 <span class="fu">=</span> <span class="fu">...</span> }</code></pre>
+<p>Of course, by “modify” we don’t mean actually mutating <code>d</code>, but rather constructing a new value of type <code>D</code> which is the same as <code>d</code> except with the <code>field3</code> field replaced by the given value.</p>
+<p>Finally, we can <em>pattern-match</em> on values of type <code>D</code> like so:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">foo (<span class="dt">C</span> { field1 <span class="fu">=</span> x }) <span class="fu">=</span> <span class="fu">...</span> x <span class="fu">...</span></code></pre>
+<p>This matches only on the <code>field1</code> field from the <code>D</code> value, calling it <code>x</code> (of course, in place of <code>x</code> we could also put an arbitrary pattern), ignoring the other fields.</p></li>
+</ol>
+<h2 id="bytestrings"><code>ByteString</code>s</h2>
+<p>Haskell’s built-in <code>String</code> type is a little silly. Sure, it’s programmatically convenient to think of <code>String</code>s as lists of characters, but that’s a terrible, terrible way to store chunks of text in the memory of a computer. Depending on an application’s need, there are several other representations of chunks of text available.</p>
+<p>The <code>ByteString</code> library helpfully (?) uses many of the same names for functions as the <code>Prelude</code> and <code>Data.List</code>. If you just <code>import Data.ByteString</code>, you’ll get a ton of name clashes in your code. Instead, we use</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">import qualified</span> <span class="dt">Data.ByteString</span> <span class="kw">as</span> <span class="dt">BS</span></code></pre>
+<p>which means that every use of a <code>ByteString</code> function (including operators) must be preceded by <code>BS</code>. Thus, to get the length of a <code>ByteString</code>, you use <code>BS.length</code>. It’s pretty annoying to have to qualify the type <code>ByteString</code>, so we often also include:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">import </span><span class="dt">Data.ByteString</span> (<span class="dt">ByteString</span>)</code></pre>
+<p>This allows you to refer to the type as <code>ByteString</code> instead of <code>BS.ByteString</code>.</p>
+<p>When working with non-<code>String</code> strings, it is still very handy to use the <code>"..."</code> syntax for writing literal values. So, GHC provides the <code>OverloadedStrings</code> extension. This works quite similarly to overloaded numbers, in that every use of <code>"blah"</code> becomes a call to <code>fromString "blah"</code>, where <code>fromString</code> is a method in the <code>IsString</code> type class. Values of any type that has an instance of <code>IsString</code> can then be created with the <code>"..."</code> syntax. Of course, <code>ByteString</code> is in the <code>IsString</code> class, as is <code>String</code>.</p>
+<p>A consequence of <code>OverloadedStrings</code> is that sometimes GHC doesn’t know what string-like type you want, so you may need to provide a type signature. You generally won’t need to worry about <code>OverloadedStrings</code> as you write your code for this assignment, but this explanation is meant to help if you get strange error messages.</p>
+<p>Unlike <code>String</code>s, which are sequences of unicode characters, <code>ByteString</code>s are sequences of (more traditional) 8-bit characters. The type of 8-bit characters in Haskell is <code>Word8</code>, which is essentially an 8-bit unsigned integer. This is kind of a double edged sword. On the one hand, you can’t use character literals like <code>'a'</code> when dealing with <code>ByteString</code>s (although you can still use string literals!). On the other hand, <code>Word8</code>s are instances of <code>Num</code> and <code>Integral</code>, so you can use all of your favorite numeric functions on them! This will come in handy in this week’s homework.</p>
+<h2 id="io-is-a-functor"><code>IO</code> is a <code>Functor</code>!</h2>
+<p>Lets say that we wanted to read a <code>ByteString</code> from <code>stdin</code>, but we want the result as a list of words instead of a single <code>ByteString</code>. We could define the following function using <code>do</code> notation:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">getWords ::</span> <span class="dt">IO</span> [<span class="dt">ByteString</span>]
+getWords <span class="fu">=</span> <span class="kw">do</span>
+  ln <span class="ot">&lt;-</span> BS.getLine
+  return <span class="fu">$</span> BS.split <span class="dv">32</span> ln <span class="co">-- 32 is the ASCII code for ' '</span></code></pre>
+<p>Notice that not much is going on here, but we are using 3 lines to define the function. All we are doing is getting an <code>IO</code> value, applying a function to it, and then returning it into <code>IO</code> type. Using <code>Functor</code>s, we can make this function much cleaner!</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">getWords' ::</span> <span class="dt">IO</span> [<span class="dt">ByteString</span>]
+getWords' <span class="fu">=</span> BS.split <span class="dv">32</span> <span class="fu">&lt;$&gt;</span> BS.getLine</code></pre>
+<p>This simply maps the (pure) splitting operation over the result of the IO action <code>BS.getLine</code>.</p>
+<hr>
+<p><code>Generated 2015-02-16 11:25:17.16751</code></p>
+
+    </div>
+
+    <div id="footer"><center>
+      <font size="-2">Powered
+      by <a href="http://community.haskell.org/~ndm/shake/">shake</a>,
+      <a href="http://jaspervdj.be/hakyll/index.html">hakyll</a>,
+      <a href="http://johnmacfarlane.net/pandoc/">pandoc</a>,
+      <a href="http://projects.haskell.org/diagrams">diagrams</a>,
+      and <a href="http://www.andres-loeh.de/lhs2tex/">lhs2TeX</a>.
+      </font></center><font size="-2">
+    </font></div><font size="-2">
+  </font></div><font size="-2">
+
+
+
+</font></body></html>

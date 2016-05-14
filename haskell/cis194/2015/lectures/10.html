@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0056)http://www.seas.upenn.edu/~cis194/lectures/10-gadts.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>CIS194</title>
+
+  <script type="text/javascript" src="./10_files/MathJax.js"></script>
+  <link href="./10_files/style.css" rel="stylesheet" type="text/css">
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+
+  <div id="canvas">
+    <div id="nav"><p><strong>CIS 194</strong>: <a href="http://www.seas.upenn.edu/~cis194/">Home</a> | <a href="http://www.seas.upenn.edu/~cis194/lectures.html">Lectures &amp; Assignments</a> | <a href="http://www.seas.upenn.edu/~cis194/policies.html">Policies</a> | <a href="http://www.seas.upenn.edu/~cis194/resources.html">Resources</a> | <a href="http://www.seas.upenn.edu/~cis194/final.html">Final Project</a> | <a href="http://www.seas.upenn.edu/~cis194/fall14/">Older version</a></p></div>
+
+    <div id="content">
+      
+      <h1 id="type-wizardry">Type Wizardry</h1>
+<p>CIS 194 Week 10<br>1 April 2015</p>
+<p>This week will be a sampling of the amazing things you can do with Haskell’s type system. Unfortunately, mastering these skills takes time, effort, and lots of practice. If this course stretched forward for another semester, we would have the time to explore a lot of this in detail. However, we do not have that luxury of time. So, instead, consider this as a preview of what you can do with Haskell. The goal with the examples below is not to show you how to be a type expert; the goal is to show you what is possible with type expertise.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">{-# LANGUAGE GADTs, DataKinds, TypeFamilies, TypeOperators #-}</span></code></pre>
+<h2 id="gadts">GADTs</h2>
+<p>A Generalized Algebraic Datatype (GADT) is a data structure that is <em>non-uniform</em> in its return type. GADTs use a different declaration syntax than do “regular” datatypes. Let’s preview that syntax before looking at a real GADT:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Maybe'</span> a <span class="kw">where</span>
+  <span class="dt">Nothing'</span><span class="ot"> ::</span> <span class="dt">Maybe'</span> a
+  <span class="dt">Just'</span><span class="ot">    ::</span> a <span class="ot">-&gt;</span> <span class="dt">Maybe'</span> a
+
+<span class="kw">data</span> <span class="dt">List</span> a <span class="kw">where</span>
+  <span class="dt">Nil</span><span class="ot">  ::</span> <span class="dt">List</span> a
+  <span class="dt">Cons</span><span class="ot"> ::</span> a <span class="ot">-&gt;</span> <span class="dt">List</span> a <span class="ot">-&gt;</span> <span class="dt">List</span> a
+
+<span class="kw">data</span> <span class="dt">Bool'</span> <span class="kw">where</span>
+  <span class="dt">True'</span><span class="ot">  ::</span> <span class="dt">Bool'</span>
+  <span class="dt">False'</span><span class="ot"> ::</span> <span class="dt">Bool'</span></code></pre>
+<p>The datatypes above are <em>not</em> GADTs, but they are written using GADT syntax. We label each constructor with its full type. Note that there is no more or less information in the declarations above than in the traditional datatype syntax; it’s just different.</p>
+<p>However, using GADT syntax, we can do something strange:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">G</span> a <span class="kw">where</span>
+  <span class="dt">MkGInt</span><span class="ot">  ::</span> <span class="dt">G</span> <span class="dt">Int</span>
+  <span class="dt">MkGBool</span><span class="ot"> ::</span> <span class="dt">G</span> <span class="dt">Bool</span></code></pre>
+<p>Look at the return types: they’re different! While that may not seem like much at first, check this out:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">match ::</span> <span class="dt">G</span> a <span class="ot">-&gt;</span> a
+match <span class="dt">MkGInt</span>  <span class="fu">=</span> <span class="dv">5</span>
+match <span class="dt">MkGBool</span> <span class="fu">=</span> <span class="dt">False</span></code></pre>
+<p><code>match</code> is a function that takes a <code>G a</code> as input and produces an <code>a</code> as output. As usual, this should work for <em>any</em> <code>a</code>. But, in the two equations above, we assume that the result is a number (<code>Int</code>, specifically) in the first equation and that the result is a <code>Bool</code> in the second. How is this possible?</p>
+<p>The idea is that when we match on a GADT constructor, such as <code>MkGInt</code> or <code>MkGBool</code>, we learn something about the type <code>a</code>. Specifically, matching on <code>MkGInt</code> tells us that <code>a</code> <em>must</em> be <code>Int</code>. That’s the whole point of putting <code>Int</code> in the return type of <code>MkGInt</code>! So, once we’ve matched on <code>MkGInt</code>, we now know that <code>a</code> is <code>Int</code>, and we can safely return <code>5</code> on the right-hand side of the equation. The case is similar in the second equation, where we learn that <code>a</code> is <code>Bool</code>.</p>
+<p>It turns out that the GADT mechanism is very powerful. Below is a larger example.</p>
+<p>First, we declare natural numbers (that is, integers greater than or equal to 0) using a unary notation, which turns out to be quite convenient:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Nat</span> <span class="fu">=</span> <span class="dt">O</span> <span class="fu">|</span> <span class="dt">S</span> <span class="dt">Nat</span></code></pre>
+<p>A natural number is either 0 or the successor of some other natural number; for example, the number 3 is encoded as <code>S (S (S O))</code>. Now, we define length-indexed vectors:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Vec</span> n a <span class="kw">where</span>
+  <span class="dt">Nil</span><span class="ot">  ::</span> <span class="dt">Vec</span> <span class="dt">O</span> a
+  <span class="dt">Cons</span><span class="ot"> ::</span> a <span class="ot">-&gt;</span> <span class="dt">Vec</span> n a <span class="ot">-&gt;</span> <span class="dt">Vec</span> (<span class="dt">S</span> n) a
+<span class="kw">infixr</span> <span class="dv">5</span> <span class="ot">`Cons`</span>    <span class="co">-- make `Cons` be *right*-associative</span></code></pre>
+<p>The first parameter, <code>a</code>, is the ordinary type parameter denoting the choice of element type – just like the parameter to <code>List</code>, above. The second parameter, <code>n</code>, denotes the length of the vector. Note that <code>VNil</code> requires its length to be <code>Zero</code>. <code>VCons</code>, on the other hand, says that its length is one more than the length of the tail of the vector.</p>
+<p>We can build length-indexed vectors quite easily:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">abc ::</span> <span class="dt">Vec</span> (<span class="dt">S</span> (<span class="dt">S</span> (<span class="dt">S</span> <span class="dt">O</span>))) <span class="dt">Char</span>
+abc <span class="fu">=</span> <span class="ch">'a'</span> <span class="ot">`Cons`</span> <span class="ch">'b'</span> <span class="ot">`Cons`</span> <span class="ch">'c'</span> <span class="ot">`Cons`</span> <span class="dt">Nil</span></code></pre>
+<p>Note that if we got the type wrong, the vector example wouldn’t compile. This is the beauty of rich types: it lets us find more errors at compile time, instead of relying on runtime testing.</p>
+<p>Recall the <code>head</code> function from the Haskell Prelude. This function is commonly viewed as a mistake sunce it is a <em>partial</em> function; it fails when the input list is empty. Instead, some people suggest using a safe version that returns the result as a <code>Maybe</code>. However, to use the value it is necessary to do a pattern match which is cumbersome and annoying. GADTs give us a way to encode the fact that a vector is non-empty in its type, and we can therefore write a safe head function that does not use <code>Maybe</code>s:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">safeHead ::</span> <span class="dt">Vec</span> (<span class="dt">S</span> n) a <span class="ot">-&gt;</span> a
+safeHead (<span class="dt">Cons</span> x _) <span class="fu">=</span> x</code></pre>
+<p>There are two key observations here. The first is that the length of the input vector is <code>S n</code>. In this expression, <code>n</code> could be any <code>Nat</code>, but since the <code>S</code> constructor is applied to it the length of the vector is at least 1. Becuase of this, we do not have to include a pattern match for the <code>Nil</code> case. In fact, including a match for the <code>Nil</code> case will give us a compiler error since the <code>Nil</code> constructor has type <code>Vec O a</code> which is not compatible with the input type <code>Vec (S n) a</code>. Now, if we try to call <code>safeHead</code> on an empty vector, we get a type error at compile time instead of a runtime error:</p>
+<pre class="code"><code>Couldn't match type ‘'O’ with ‘'S n0’
+Expected type: List ('S n0) a
+  Actual type: List 'O a
+In the first argument of ‘head’, namely ‘Nil’
+In the expression: head Nil
+</code></pre>
+<p>Now suppose we want to implement vector addition. The mathematical definition of vector addition states that the two vectors being added must have the same size. Using GADTs, we can encode this constraint in the type system.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">(&lt;+&gt;) ::</span> <span class="dt">Num</span> a <span class="ot">=&gt;</span> <span class="dt">Vec</span> n a <span class="ot">-&gt;</span> <span class="dt">Vec</span> n a <span class="ot">-&gt;</span> <span class="dt">Vec</span> n a
+<span class="dt">Nil</span> <span class="fu">&lt;+&gt;</span> <span class="dt">Nil</span> <span class="fu">=</span> <span class="dt">Nil</span>
+<span class="dt">Cons</span> x xs <span class="fu">&lt;+&gt;</span> <span class="dt">Cons</span> y ys <span class="fu">=</span> <span class="dt">Cons</span> (x <span class="fu">+</span> y) (xs <span class="fu">&lt;+&gt;</span> ys)</code></pre>
+<p>Notice how we do not need to match the cases where the first input is <code>Nil</code> and the second is a <code>Cons</code> and vice verse. The reason for this that we encode in the type of the function that both inputs have length <code>n</code>. This means that both vectors could be <code>Nil</code> or both could be <code>Cons</code>, but they can’t be mixed.</p>
+<p>We could take this one step further and define matrix multiplication where the type system requires that the inner dimensions of the matrices must match. This is left as an exercise.</p>
+<h2 id="type-families">Type families</h2>
+<p>Once we have GADTs, it soon becomes necessary to do computation within types.</p>
+<p>Consider the type of <code>vappend</code>, an append operation on vectors:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">vappend ::</span> <span class="dt">Vec</span> n a <span class="ot">-&gt;</span> <span class="dt">Vec</span> m a <span class="ot">-&gt;</span> <span class="dt">Vec</span> <span class="fu">???</span> a</code></pre>
+<p>We need to fill those question marks with the <em>sum</em> of <code>n</code> and <code>m</code> – a type-level addition operation.</p>
+<p>First, let’s look at a slightly simpler example:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">type</span> family <span class="dt">Frob</span> a <span class="kw">where</span>
+  <span class="dt">Frob</span> <span class="dt">Int</span>  <span class="fu">=</span> <span class="dt">Char</span>
+  <span class="dt">Frob</span> <span class="dt">Bool</span> <span class="fu">=</span> ()
+
+<span class="ot">quux ::</span> <span class="dt">G</span> a <span class="ot">-&gt;</span> <span class="dt">Frob</span> a
+quux <span class="dt">MkGInt</span>  <span class="fu">=</span> <span class="ch">'x'</span>
+quux <span class="dt">MkGBool</span> <span class="fu">=</span> ()</code></pre>
+<p>A type family can be understood as a type function – a function from types to types. <code>Frob Int</code> is just <code>Char</code>, and <code>Frob Bool</code> is just <code>()</code>.</p>
+<p>Note the return type of <code>quux</code>: it uses the <code>Frob</code> type family to compute th return type. In the first equation, GHC learns that <code>a</code> must be <code>Int</code>. GHC also knows that <code>Frob Int</code> is <code>Char</code>, so the <code>'x'</code> on the right-hand side is well typed. A similar analysis shows that the second equation is well typed.</p>
+<p>Let’s now return to length-indexed vectors. We’ll need a type-level addition to proceed:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">type</span> family a <span class="fu">+</span> b <span class="kw">where</span>
+  <span class="dt">O</span>   <span class="fu">+</span> b <span class="fu">=</span> b
+  <span class="dt">S</span> a <span class="fu">+</span> b <span class="fu">=</span> <span class="dt">S</span> (a <span class="fu">+</span> b)</code></pre>
+<p>Note that the <code>+</code> we’ve just defined is totally independent from the normal <code>+</code> operator. This new one is on <em>types</em>.</p>
+<p>Now, we can write <code>vappend</code>:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">vappend ::</span> <span class="dt">Vec</span> n a <span class="ot">-&gt;</span> <span class="dt">Vec</span> m a <span class="ot">-&gt;</span> <span class="dt">Vec</span> (n <span class="fu">+</span> m) a
+vappend <span class="dt">Nil</span>        b <span class="fu">=</span> b
+vappend (<span class="dt">Cons</span> h t) b <span class="fu">=</span> h <span class="ot">`Cons`</span> vappend t b</code></pre>
+<p>GHC has to do a lot of work to type-check that, but it works, by gum! Now that we have an implementation of <code>vappend</code>, can we create an instance of the <code>Monoid</code> type class for vectors? Why or why not?</p>
+<h2 id="theorem-proving">Theorem Proving</h2>
+<h3 id="the-curry-howard-isomorphism">The Curry-Howard Isomorphism</h3>
+<p>There is a direct correspondence from theorems and proofs to types and programs. Programs act as proofs of their types and typecheckers verify these proofs. We have already seen this a little bit when we used GADTs to <em>prove</em> to the Haskell compiler that the input to <code>safeHead</code> was non-empty. Recall that the type of this function is: <code>Vec (S n) a -&gt; a</code>. We could view this as a theorem stating that if there exists a non-empty vector of <code>a</code>s, then there exists an expression of type <code>a</code> and the implementation of <code>safeHead</code> is a proof of this theorem.</p>
+<h3 id="propositional-logic">Propositional Logic</h3>
+<p>We can use the Haskell compiler to verify theorems in Propositional Logic. Propositional Logic is a field of mathematics that is concerned with proving <em>propositions</em>, or statements that could be either true or false. Propositions are related using <em>logical connectives</em>. Two of the most basic logical connectives are disjunction (or) and conjunction (and). We can encode these connectives in Haskell’s type system. Consider the following definition of disjunctions:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="co">-- Logical Disjunction</span>
+<span class="kw">data</span> p \<span class="fu">/</span> q <span class="fu">=</span> <span class="dt">Left</span>  p
+            <span class="fu">|</span> <span class="dt">Right</span> q</code></pre>
+<p>The disjunction has two constructors, <code>Left</code> and <code>Right</code>. The <code>Left</code> constructor takes in something of type <code>p</code> and the <code>Right</code> constuctor takes in something of type <code>q</code>. This means that a proposition of type <code>p \/ q</code> can be either a <code>p</code> or a <code>q</code> where <code>p</code> and <code>q</code> are themselves propositions. Now let’s take a look at conjunctions:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="co">-- Logical Conjunction</span>
+<span class="kw">data</span> p <span class="fu">/</span>\ q <span class="fu">=</span> <span class="dt">Conj</span> p q</code></pre>
+<p>Unlike disjunction, conjunction only has one constructor. This is because there is only one was to have a conjunction proposition; both <code>p</code> and <code>q</code> must be true.</p>
+<p>Another basic logical connective is implication. Luckily, implication is already built in to the Haskell type system in the form of arrow types. The type <code>p -&gt; q</code> is equivalent to the logical statement P implies Q. We can now prove a very simple theorem, Modus Ponens. Modus Ponens states that if P implies Q and P is true, then Q is true. We can write this down in Haskell:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">modus_ponens ::</span> (p <span class="ot">-&gt;</span> q) <span class="ot">-&gt;</span> p <span class="ot">-&gt;</span> q
+modus_ponens pq p <span class="fu">=</span> pq p</code></pre>
+<p>Notice that the type of <code>modus_ponens</code> is identical to the Prelude function <code>($)</code>. We can therefore simplify the proof:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">modus_ponens' ::</span> (p <span class="ot">-&gt;</span> q) <span class="ot">-&gt;</span> p <span class="ot">-&gt;</span> q
+modus_ponens' <span class="fu">=</span> (<span class="fu">$</span>)</code></pre>
+<p>This is a very interesting observation. The logical theorem Modus Ponens is exactly equivalent to function application!</p>
+<p>In order for a logic to be consistent, there must be some proposition that in not provable. In our Haskell formulation of propositional logic, we will call this <code>False</code> and define it as follows.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">False</span></code></pre>
+<p><code>False</code> is a datatype that has no constructors. This means that the type <code>False</code> in <em>uninhabited</em>; it is not provable since there is no way to write a program of type <code>False</code>. Now that we have a notion of <code>False</code>, we can define the logical connective not:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">Not</span> p <span class="fu">=</span> p <span class="ot">-&gt;</span> <span class="dt">False</span></code></pre>
+<p>The <code>Not</code> type is really just an alias for <code>p -&gt; False</code>. In other words, if <code>p</code> were true, then <code>False</code> would also be true. Now, let’s prove another theorem, Modus Tollens. Modus Tollens states that if P imples Q and Q is not true, then P is not true.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">modus_tollens ::</span> (p <span class="ot">-&gt;</span> q) <span class="ot">-&gt;</span> <span class="dt">Not</span> q <span class="ot">-&gt;</span> <span class="dt">Not</span> p
+modus_tollens pq not_q <span class="fu">=</span> \p <span class="ot">-&gt;</span> not_q <span class="fu">$</span> pq p</code></pre>
+<p>This is a bit more involved than the proof of Modus Ponens above. Recall that <code>Not p</code> is really just a handy syntax for <code>p -&gt; False</code>. This means that the proof of Modus Tollens should be a function that takes in an inhabitant of the proposition <code>p</code> and derives a contradiction from it. This is not too hard to do since we assume that <code>p</code> implies <code>q</code> and <code>q</code> implies <code>False</code>.</p>
+<hr>
+<p><code>Generated 2015-04-01 08:46:09.171432</code></p>
+
+    </div>
+
+    <div id="footer"><center>
+      <font size="-2">Powered
+      by <a href="http://community.haskell.org/~ndm/shake/">shake</a>,
+      <a href="http://jaspervdj.be/hakyll/index.html">hakyll</a>,
+      <a href="http://johnmacfarlane.net/pandoc/">pandoc</a>,
+      <a href="http://projects.haskell.org/diagrams">diagrams</a>,
+      and <a href="http://www.andres-loeh.de/lhs2tex/">lhs2TeX</a>.
+      </font></center><font size="-2">
+    </font></div><font size="-2">
+  </font></div><font size="-2">
+
+
+
+</font></body></html>

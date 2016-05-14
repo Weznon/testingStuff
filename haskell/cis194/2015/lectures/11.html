@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0055)http://www.seas.upenn.edu/~cis194/lectures/11-stlc.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>CIS194</title>
+
+  <script type="text/javascript" src="./11_files/MathJax.js"></script>
+  <link href="./11_files/style.css" rel="stylesheet" type="text/css">
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+
+  <div id="canvas">
+    <div id="nav"><p><strong>CIS 194</strong>: <a href="http://www.seas.upenn.edu/~cis194/">Home</a> | <a href="http://www.seas.upenn.edu/~cis194/lectures.html">Lectures &amp; Assignments</a> | <a href="http://www.seas.upenn.edu/~cis194/policies.html">Policies</a> | <a href="http://www.seas.upenn.edu/~cis194/resources.html">Resources</a> | <a href="http://www.seas.upenn.edu/~cis194/final.html">Final Project</a> | <a href="http://www.seas.upenn.edu/~cis194/fall14/">Older version</a></p></div>
+
+    <div id="content">
+      
+      <h1 id="gadts-in-action">GADTs in Action</h1>
+<p>CIS 194 Week 11<br>8 April 2015</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">{-# LANGUAGE GADTs                                                         #-}</span>
+<span class="ot">{-# LANGUAGE TypeFamilies                                                  #-}</span>
+<span class="ot">{-# LANGUAGE TypeOperators                                                 #-}</span></code></pre>
+<p>Last week we starting learning about Generalized Algebraic Data Types or, as they are generally called, GADTs. Recall that GADTs are special data types whose constructors have a non-uniform return type. This allows us to encode invariants about a data structure in its type. We saw how GADTs can be used to encode the length of a vector. This allowed us to define vector addition in a “type-safe” way, enforcing the invariant that when you add two vectors their lengths must be equal in the type of the function.</p>
+<h2 id="the-simple-typed-lambda-calculus">The Simple Typed Lambda Calculus</h2>
+<p>The Simply Typed Lambda Calculus, or STLC for short, is a basic functional programming language. It is the building block for modern day functional languages such as Haskell and OCaml, and is used extensively in programming language research. We will consider a variant of STLC with two base types: <code>Int</code> and <code>Bool</code>, as well as arrow types. Programs in STLC are composed of expressions. An expression is either an integer or boolean literal, a variable, an anonymous function (lambda abstraction), a function application, a binary operation, or an if statement. We can encode an abstract syntax tree for STLC using the following Haskell data type:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Expr</span> <span class="fu">=</span> <span class="dt">IntLit</span> <span class="dt">Int</span>
+          <span class="fu">|</span> <span class="dt">BoolLit</span> <span class="dt">Bool</span>
+          <span class="fu">|</span> <span class="dt">Lambda</span> <span class="dt">String</span> <span class="dt">Expr</span>
+          <span class="fu">|</span> <span class="dt">App</span> <span class="dt">Expr</span> <span class="dt">Expr</span>
+          <span class="fu">|</span> <span class="dt">Bop</span> <span class="dt">Bop</span> <span class="dt">Expr</span> <span class="dt">Expr</span>
+          <span class="fu">|</span> <span class="dt">If</span> <span class="dt">Expr</span> <span class="dt">Expr</span> <span class="dt">Expr</span>
+
+<span class="kw">data</span> <span class="dt">Bop</span> <span class="fu">=</span> <span class="dt">Add</span> <span class="fu">|</span> <span class="dt">Sub</span> <span class="fu">|</span> <span class="dt">Eq</span> <span class="fu">|</span> <span class="dt">Lt</span> <span class="fu">|</span> <span class="dt">Gt</span> <span class="fu">|</span> <span class="dt">And</span> <span class="fu">|</span> <span class="dt">Or</span></code></pre>
+<p>This is a perfectly fine representation of the language, however it allows us to create expressions that are ill-typed. This means that in order to write an interpreter for this language, we would first need to write a type checker that verifies that the expressions we are interpreting are well-typed. It would be really great if we could encode the invariants about STLC’s typing rules in to the expression data type.</p>
+<h3 id="gadts-to-the-rescue">GADTs to the Rescue!</h3>
+<p>In fact, we <em>can</em> encode the STLC typing invariants in to the expression data type. To do this, we will have to use GADTs. Before we begin, we have to define a way to equate type-level representations of types (ie <code>Int</code>, <code>Bool</code>, <code>Int -&gt; Bool</code>) with term level representations of types. We do this with a GADT:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Type</span><span class="ot"> ::</span> <span class="fu">*</span> <span class="ot">-&gt;</span> <span class="fu">*</span> <span class="kw">where</span>
+  <span class="dt">TInt</span><span class="ot">    ::</span> <span class="dt">Type</span> <span class="dt">Int</span>
+  <span class="dt">TBool</span><span class="ot">   ::</span> <span class="dt">Type</span> <span class="dt">Bool</span>
+  <span class="dt">TArrow</span><span class="ot">  ::</span> <span class="dt">Type</span> a <span class="ot">-&gt;</span> <span class="dt">Type</span> b <span class="ot">-&gt;</span> <span class="dt">Type</span> (a <span class="ot">-&gt;</span> b)</code></pre>
+<p>This will allow us to embed typing information into expressions that do not inherently carry information about their type. For example, it is impossible to determine the type of a variable by simply inspecting it, so we will annotate variables with type information. This information carries through to the type level so that GHC can validate that expressions are well typed for us!</p>
+<p>Next, we need to define the type of boolean operators. We will also use a GADT for this since it will allow us to specify exactly what the input and output types should be for each operator</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Bop</span><span class="ot"> ::</span> <span class="fu">*</span> <span class="ot">-&gt;</span> <span class="fu">*</span> <span class="ot">-&gt;</span> <span class="fu">*</span> <span class="kw">where</span>
+  <span class="dt">Add</span><span class="ot">  ::</span> <span class="dt">Bop</span> <span class="dt">Int</span> <span class="dt">Int</span>
+  <span class="dt">Sub</span><span class="ot">  ::</span> <span class="dt">Bop</span> <span class="dt">Int</span> <span class="dt">Int</span>
+  <span class="dt">Eq</span><span class="ot">   ::</span> <span class="dt">Bop</span> <span class="dt">Int</span> <span class="dt">Bool</span>
+  <span class="dt">Lt</span><span class="ot">   ::</span> <span class="dt">Bop</span> <span class="dt">Int</span> <span class="dt">Bool</span>
+  <span class="dt">Gt</span><span class="ot">   ::</span> <span class="dt">Bop</span> <span class="dt">Int</span> <span class="dt">Bool</span>
+  <span class="dt">And</span><span class="ot">  ::</span> <span class="dt">Bop</span> <span class="dt">Bool</span> <span class="dt">Bool</span>
+  <span class="dt">Or</span><span class="ot">   ::</span> <span class="dt">Bop</span> <span class="dt">Bool</span> <span class="dt">Bool</span></code></pre>
+<p>Next, we are going to need a way to derive the term-level type of an STLC expression. In many cases, it will be possible to statically determine the type of an expression, however there will be no object to witness the type. To fix this, we will create a typeclass called <code>TypeOf</code>.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">TypeOf</span> a <span class="kw">where</span>
+<span class="ot">  typeOf ::</span> a <span class="ot">-&gt;</span> <span class="dt">Type</span> a
+
+<span class="kw">instance</span> <span class="dt">TypeOf</span> <span class="dt">Int</span> <span class="kw">where</span>
+  typeOf _ <span class="fu">=</span> <span class="dt">TInt</span>
+
+<span class="kw">instance</span> <span class="dt">TypeOf</span> <span class="dt">Bool</span> <span class="kw">where</span>
+  typeOf _ <span class="fu">=</span> <span class="dt">TBool</span></code></pre>
+<p>This type class gives us a way of obtaining a term-level representation of the type of an expression of type <code>Int</code> or <code>Bool</code>, the two base types in STLC. Notice how we don’t actually care about the value of the expression; all we care about is the static type information known by GHC. GHC will use this type information to choose which implementation of <code>typeOf</code> to call, in turn giving us either <code>TInt</code> or <code>TBool</code>.</p>
+<p>Now we are ready to define the actual expression data type.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">Expr</span><span class="ot"> ::</span> <span class="fu">*</span> <span class="ot">-&gt;</span> <span class="fu">*</span> <span class="kw">where</span>
+  <span class="dt">Lit</span><span class="ot">     ::</span> <span class="dt">TypeOf</span> a <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Expr</span> a
+  <span class="dt">Var</span><span class="ot">     ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> a <span class="ot">-&gt;</span> <span class="dt">Expr</span> a
+  <span class="dt">Lambda</span><span class="ot">  ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> <span class="dt">Type</span> a <span class="ot">-&gt;</span> <span class="dt">Expr</span> b <span class="ot">-&gt;</span> <span class="dt">Expr</span> (a <span class="ot">-&gt;</span> b)
+  <span class="dt">App</span><span class="ot">     ::</span> <span class="dt">Expr</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> <span class="dt">Expr</span> a <span class="ot">-&gt;</span> <span class="dt">Expr</span> b
+  <span class="dt">Bop</span><span class="ot">     ::</span> <span class="dt">Bop</span> a b <span class="ot">-&gt;</span> <span class="dt">Expr</span> a <span class="ot">-&gt;</span> <span class="dt">Expr</span> a <span class="ot">-&gt;</span> <span class="dt">Expr</span> b
+  <span class="dt">If</span><span class="ot">      ::</span> <span class="dt">Expr</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Expr</span> a <span class="ot">-&gt;</span> <span class="dt">Expr</span> a <span class="ot">-&gt;</span> <span class="dt">Expr</span> a
+  <span class="dt">Lift</span><span class="ot">    ::</span> a <span class="ot">-&gt;</span> <span class="dt">Type</span> a <span class="ot">-&gt;</span> <span class="dt">Expr</span> a</code></pre>
+<p>This definition is quite a bit more complicated than the original one we made. First, notice that there is only one constructor for literals. A literal can have any base type, denoted by the <code>TypeOf</code> class constraint. In this formulation, the expression <code>Lit 1</code> has type <code>Expr Int</code> and <code>Lit True</code> has type <code>Expr Bool</code>.</p>
+<p>As mentioned above, we need to annotate variables with their types since there is no inherent way of determining the type of a variable out of context. Similarly, we also annotate the input to a lambda abstraction. The type of an STLC lambda expression is <code>Expr (a -&gt; b)</code>, just like in Haskell!</p>
+<p>Function application is fairly straightforward. In order to apply a function, it must have an arrow type, and the expression it is being applied to must have the correct input type. Binary operators are similar; two input expressions must be supplied that match the type of the operator input.</p>
+<p>If statements work as you might expect. The first expression is the conditional, and it must have type <code>Bool</code>. The next two expressions are the “then” and “else” cases, and they must have the same type.</p>
+<p>The final constructor is called <code>Lift</code>. This is a bit strange, and it didn’t show up in our first formulation of STLC. <code>Lift</code> should be used when you have a value and you want to lift it into an expression, but it does not have a <code>TypeOf</code> instance, and therefore you cannot construct a literal for it. This is not really useful when writing STLC programs, but it will be needed later in our interpreter.</p>
+<p>Now let’s look at some STLC programs! We will start with something really simple: adding two numbers. We can write the program <code>5 + 3</code> using the STLC abstract syntax as follows:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="dt">Bop</span> <span class="dt">Add</span> (<span class="dt">Lit</span> <span class="dv">5</span>) (<span class="dt">Lit</span> <span class="dv">3</span>)</code></pre>
+<p>This expression has type <code>Expr Int</code>, just as we would expect! Now, what would happen if we try to add <code>5</code> and <code>True</code>?</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="dt">Bop</span> <span class="dt">Add</span> (<span class="dt">Lit</span> <span class="dv">5</span>) (<span class="dt">Lit</span> <span class="dt">True</span>)</code></pre>
+<pre class="code"><code>&lt;interactive&gt;:
+    Couldn't match expected type ‘Int’ with actual type ‘Bool’
+    In the first argument of ‘Lit’, namely ‘True’
+    In the third argument of ‘Bop’, namely ‘(Lit True)’
+</code></pre>
+<p>We get a type error! If we had been doing this without GADTs, we would have had to check the types ourselves, but since the <code>Expr</code> data type is so expressive, GHC does the type checking for us! Cool!</p>
+<p>Let’s look at a few more simple programs.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">plus ::</span> <span class="dt">Expr</span> (<span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>)
+plus <span class="fu">=</span> <span class="dt">Lambda</span> <span class="st">"x"</span> <span class="dt">TInt</span> <span class="fu">$</span> <span class="dt">Lambda</span> <span class="st">"y"</span> <span class="dt">TInt</span> <span class="fu">$</span> <span class="dt">Bop</span> <span class="dt">Add</span> (<span class="dt">Var</span> <span class="st">"x"</span>) (<span class="dt">Var</span> <span class="st">"y"</span>)
+
+abs<span class="ot"> ::</span> <span class="dt">Expr</span> (<span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>)
+abs <span class="fu">=</span> <span class="dt">Lambda</span> <span class="st">"x"</span> <span class="dt">TInt</span> <span class="fu">$</span> <span class="dt">If</span> (<span class="dt">Bop</span> <span class="dt">Lt</span> (<span class="dt">Var</span> <span class="st">"x"</span>) (<span class="dt">Lit</span> <span class="dv">0</span>))
+               <span class="co">{- then -}</span>  (<span class="dt">Bop</span> <span class="dt">Sub</span> (<span class="dt">Lit</span> <span class="dv">0</span>) (<span class="dt">Var</span> <span class="st">"x"</span>))
+               <span class="co">{- else -}</span>  (<span class="dt">Var</span> <span class="st">"x"</span>)</code></pre>
+<p>So, now we can write down well-typed STLC expressions. Great! But it would be nice if we could actually do something with them. Let’s do the next sensible thing; write an interpreter.</p>
+<h3 id="getting-static-type-information">Getting Static Type Information</h3>
+<p>Before we write the full interpreter, let’s devise a way to find the representation of the type of any expression. Since the type of any expression is known by GHC, this is definitely possible, but it will take a bit of work (but less work than typechecking!). Just like when we wanted to find the types of values, we will need a type class here.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">TypeOfExpr</span> a <span class="kw">where</span>
+<span class="ot">    typeOfExpr ::</span> <span class="dt">Expr</span> a <span class="ot">-&gt;</span> <span class="dt">Type</span> a
+
+<span class="kw">instance</span> <span class="dt">TypeOfExpr</span> <span class="dt">Int</span> <span class="kw">where</span>
+    typeOfExpr _ <span class="fu">=</span> <span class="dt">TInt</span>
+
+<span class="kw">instance</span> <span class="dt">TypeOfExpr</span> <span class="dt">Bool</span> <span class="kw">where</span>
+    typeOfExpr _ <span class="fu">=</span> <span class="dt">TBool</span></code></pre>
+<p>The instances of <code>TypeOfExpr</code> for base types are nearly identical to those of <code>TypeOf</code>. Again, we don’t actually care about the values, only the staticly known type information. However, unlike base types, we need to deal with arrow types here. The instance for arrow types is a bit more complicated and relies on the structure of the expression.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">TypeOfExpr</span> b <span class="ot">=&gt;</span> <span class="dt">TypeOfExpr</span> (a <span class="ot">-&gt;</span> b) <span class="kw">where</span>
+    typeOfExpr (<span class="dt">Var</span> _ t)      <span class="fu">=</span> t
+    typeOfExpr (<span class="dt">Lambda</span> _ t e) <span class="fu">=</span> <span class="dt">TArrow</span> t <span class="fu">$</span> typeOfExpr e
+    typeOfExpr (<span class="dt">App</span> e1 _)     <span class="fu">=</span> <span class="kw">case</span> typeOfExpr e1 <span class="kw">of</span>
+                                  <span class="dt">TArrow</span> _ t2 <span class="ot">-&gt;</span> t2
+    typeOfExpr (<span class="dt">If</span> _ e1 _)    <span class="fu">=</span> typeOfExpr e1
+    typeOfExpr (<span class="dt">Lift</span> _ t)     <span class="fu">=</span> t</code></pre>
+<p>First, notice how the cases for <code>Lit</code> and <code>Bop</code> are omitted. We don’t match over these because our formulation of STLC forbids literals and binary operations from having function types. The remaining cases are relatively straightforward. <code>Var</code>s and <code>Lift</code>s have type information stored in them, so it is trivial to retrieve their types. For <code>Lambda</code>s, we know the input type and we get the return type via a recursive call. The first expression in a function application is (by construction) an arrow type, therefore we can match on it to get the return type. If statements just have the type of one of the branches.</p>
+<p>Notice that although we are inspecting types here, we are <em>not</em> type checking. If we were performing type checks then we would have to do things like make sure the argument to a function in the <code>App</code> case has the right type, make sure both branches of an <code>If</code> statement have the same type, etc.</p>
+<h3 id="proving-type-equality">Proving Type Equality</h3>
+<p>The next thing that we like to add is the ability to <em>prove</em> the equality between two types. The <code>Data.Type.Equality</code> module defines the <code>(:~:)</code> type which can be thought of as a theorem (remember the Curry-Howard isomorphism?) stating the equality between two types. The only proof of this theorem is the data constructor <code>Refl</code>; meaning that any type is equal to itself.</p>
+<p>Using <code>(:~:)</code>, let’s write a function that returns a proof that two types are equal if such a proof exists.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">eqTy ::</span> <span class="dt">Type</span> u <span class="ot">-&gt;</span> <span class="dt">Type</span> v <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (u <span class="fu">:~:</span> v)
+eqTy <span class="dt">TInt</span>  <span class="dt">TInt</span>  <span class="fu">=</span> <span class="dt">Just</span> <span class="dt">Refl</span>
+eqTy <span class="dt">TBool</span> <span class="dt">TBool</span> <span class="fu">=</span> <span class="dt">Just</span> <span class="dt">Refl</span>
+eqTy (<span class="dt">TArrow</span> u1 u2) (<span class="dt">TArrow</span> v1 v2) <span class="fu">=</span> <span class="kw">do</span>
+  <span class="dt">Refl</span> <span class="ot">&lt;-</span> eqTy u1 v1
+  <span class="dt">Refl</span> <span class="ot">&lt;-</span> eqTy u2 v2
+  return <span class="dt">Refl</span>
+eqTy _     _     <span class="fu">=</span> <span class="dt">Nothing</span></code></pre>
+<p>This states that <code>Int</code> is equal to <code>Int</code>, <code>Bool</code> is equal to <code>Bool</code>, and two arrow types are equal if their input and output types are equal.</p>
+<h3 id="substitution">Substitution</h3>
+<p>The hardest part of writing an interpreter is the substitution case. Substitution occur as part of function application; when a lambda abstraction is applied to an argument, all occurences of the input variable in the function body get substituted for the argument. There are a couple of intricate cases in substitution, but the only one we really care about is <code>Var</code>. Let’s take a look at the implementation of substitution.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">subst ::</span> <span class="dt">String</span> <span class="ot">-&gt;</span> u <span class="ot">-&gt;</span> <span class="dt">Type</span> u <span class="ot">-&gt;</span> <span class="dt">Expr</span> t <span class="ot">-&gt;</span> <span class="dt">Expr</span> t
+subst _ _ _ (<span class="dt">Lit</span> b) <span class="fu">=</span> <span class="dt">Lit</span> b
+subst x v u (<span class="dt">Var</span> y t)
+    <span class="fu">|</span> x <span class="fu">==</span> y    <span class="fu">=</span> <span class="kw">case</span> eqTy u t <span class="kw">of</span>
+                    <span class="dt">Just</span> <span class="dt">Refl</span> <span class="ot">-&gt;</span> <span class="dt">Lift</span> v u
+                    <span class="dt">Nothing</span>   <span class="ot">-&gt;</span> error <span class="st">"ill-typed substitution"</span>
+    <span class="fu">|</span> otherwise <span class="fu">=</span> <span class="dt">Var</span> y t
+subst x v u (<span class="dt">Bop</span> b e1 e2) <span class="fu">=</span> <span class="dt">Bop</span> b
+                            (subst x v u e1)
+                            (subst x v u e2)
+subst x v u (<span class="dt">If</span> e1 e2 e3) <span class="fu">=</span> <span class="dt">If</span> (subst x v u e1)
+                               (subst x v u e2)
+                               (subst x v u e3)
+subst x v u (<span class="dt">Lambda</span> y t e) <span class="fu">|</span> x <span class="fu">==</span> y    <span class="fu">=</span> <span class="dt">Lambda</span> y t e
+                           <span class="fu">|</span> otherwise <span class="fu">=</span> <span class="dt">Lambda</span> y t (subst x v u e)
+subst x v u (<span class="dt">App</span> e1 e2) <span class="fu">=</span> <span class="dt">App</span> (subst x v u e1) (subst x v u e2)
+subst _ _ _ (<span class="dt">Lift</span> x t)  <span class="fu">=</span> <span class="dt">Lift</span> x t</code></pre>
+<p>First, notice the type signiture of <code>subst</code>. This function has four arguments. The first argument is the identifier of the variable we are substituting. The second argument is the value that we are substituting and the third is its type. The fourth argument is the expression we are substituting in. The function then returns resulting expression after the substitution.</p>
+<p>One really interesting thing to note is that the expression that we are substituting in keeps the same type (<code>t</code>) before and after the substitution. One of the hardest parts of formally proving that a language is type safe is proving the Substitution Preserves Typing lemma. For our formulation of STLC, this property is built in to the type of the <code>subst</code> function. In this way, our implementation of <code>subst</code> acts as a proof of the Substitution Lemma.</p>
+<p>Now let’s turn our attention to the <code>Var</code> case. The first thing we do is check to see if this is indeed the variable that we were looking for. If it is, then we have to make sure that the variable has the right type to do the substitution. This is where we have to use the <code>eqTy</code> function. If we can get an equality proof then we can do the substitution safely.</p>
+<p>We have a design decision to make in the case where there is no equality proof. We could decide that variable names are unique only to their type, and therefore we could multiple variables with the same name that are differentiated only by their types. In this case, we could return the original variable and not perform any substitution. The other design decision we could make is to throw an error since variables should be unique. This choice is more idiomatic, so this is what we do.</p>
+<p>Let’s now revisit the <code>eqTy</code> function. Was it necessary for this function to return a <code>Maybe (u :~: v)</code> or would a <code>Bool</code> be sufficient? After all, there are really only two values that a <code>Maybe (u :~: v)</code> could take on: <code>Just Refl</code> or <code>Nothing</code>. Could we just return <code>True</code> instead of <code>Just Refl</code> and <code>False</code> instead of <code>Nothing</code>?</p>
+<p>We actually need the equality proof. Although a <code>Bool</code> may be enough to convince us that the substitution is legal, it is not enough to convince GHC. The equality proof carries additional information in its type that we cannot convey with a <code>Bool</code>.</p>
+<h3 id="interpreting-stlc">Interpreting STLC</h3>
+<p>We are finally ready to write our interpreter! The hardest part of the interpreting the language is substitution; the rest is pretty easy.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">eval ::</span> <span class="dt">Expr</span> t <span class="ot">-&gt;</span> t
+eval (<span class="dt">Lit</span> v)        <span class="fu">=</span> v
+eval (<span class="dt">Var</span> _ _)      <span class="fu">=</span> error <span class="st">"Free variable has no value"</span>
+eval (<span class="dt">Lambda</span> x t e) <span class="fu">=</span> \v <span class="ot">-&gt;</span> eval <span class="fu">$</span> subst x v t e
+eval (<span class="dt">App</span> e1 e2)    <span class="fu">=</span> (eval e1) (eval e2)
+eval (<span class="dt">Bop</span> b e1 e2)  <span class="fu">=</span> (evalBop b <span class="ot">`on`</span> eval) e1 e2
+eval (<span class="dt">If</span> b e1 e2)   <span class="fu">|</span> eval b    <span class="fu">=</span> eval e1
+                    <span class="fu">|</span> otherwise <span class="fu">=</span> eval e2
+eval (<span class="dt">Lift</span> x _)     <span class="fu">=</span> x
+
+<span class="ot">evalBop ::</span> <span class="dt">Bop</span> a b <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> b
+evalBop <span class="dt">Add</span> <span class="fu">=</span> (<span class="fu">+</span>)
+evalBop <span class="dt">Sub</span> <span class="fu">=</span> (<span class="fu">-</span>)
+evalBop <span class="dt">Eq</span>  <span class="fu">=</span> (<span class="fu">==</span>)
+evalBop <span class="dt">Lt</span>  <span class="fu">=</span> (<span class="fu">&lt;</span>)
+evalBop <span class="dt">Gt</span>  <span class="fu">=</span> (<span class="fu">&gt;</span>)
+evalBop <span class="dt">And</span> <span class="fu">=</span> (<span class="fu">&amp;&amp;</span>)
+evalBop <span class="dt">Or</span>  <span class="fu">=</span> (<span class="fu">||</span>)</code></pre>
+<p>Notice that the type of the interpreter function is <code>Expr t -&gt; t</code>. That means that the return type depends on the type of the input expression. For example, if the input is an <code>Int</code> expression, it will return an <code>Int</code>. If the input has an arrow type, the interpreter will actually return a Haskell function that we can evaluate in GHCi!</p>
+<hr>
+<p><code>Generated 2015-04-08 09:35:16.947024</code></p>
+
+    </div>
+
+    <div id="footer"><center>
+      <font size="-2">Powered
+      by <a href="http://community.haskell.org/~ndm/shake/">shake</a>,
+      <a href="http://jaspervdj.be/hakyll/index.html">hakyll</a>,
+      <a href="http://johnmacfarlane.net/pandoc/">pandoc</a>,
+      <a href="http://projects.haskell.org/diagrams">diagrams</a>,
+      and <a href="http://www.andres-loeh.de/lhs2tex/">lhs2TeX</a>.
+      </font></center><font size="-2">
+    </font></div><font size="-2">
+  </font></div><font size="-2">
+
+
+
+</font></body></html>

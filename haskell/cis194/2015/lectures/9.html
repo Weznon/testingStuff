@@ -1,0 +1,364 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- saved from url=(0058)http://www.seas.upenn.edu/~cis194/lectures/09-testing.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>CIS194</title>
+
+  <script type="text/javascript" src="./9_files/MathJax.js"></script>
+  <link href="./9_files/style.css" rel="stylesheet" type="text/css">
+<style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+
+  <div id="canvas">
+    <div id="nav"><p><strong>CIS 194</strong>: <a href="http://www.seas.upenn.edu/~cis194/">Home</a> | <a href="http://www.seas.upenn.edu/~cis194/lectures.html">Lectures &amp; Assignments</a> | <a href="http://www.seas.upenn.edu/~cis194/policies.html">Policies</a> | <a href="http://www.seas.upenn.edu/~cis194/resources.html">Resources</a> | <a href="http://www.seas.upenn.edu/~cis194/final.html">Final Project</a> | <a href="http://www.seas.upenn.edu/~cis194/fall14/">Older version</a></p></div>
+
+    <div id="content">
+      
+      <h1 id="testing">Testing</h1>
+<p>CIS 194 Week 09<br>25 March 2015</p>
+<p>Suggested reading:</p>
+<ul>
+<li><a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">RWH Chapter 11: Testing and Quality Assurance</a>, but note that the QuickCheck library’s interface has evolved a bit since this was written</li>
+</ul>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">{-# LANGUAGE RankNTypes #-}</span>
+<span class="kw">import </span><span class="dt">Test.QuickCheck</span>
+<span class="kw">import </span><span class="dt">Test.HUnit</span>
+<span class="kw">import </span><span class="dt">Data.List</span>
+<span class="kw">import </span><span class="dt">Control.Monad</span></code></pre>
+<h2 id="unit-tests">Unit tests</h2>
+<p>Let’s say I want to merge two sorted lists.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="co">-- | Assuming the input lists are sorted, combine the lists into a</span>
+<span class="co">-- sorted output.</span>
+<span class="ot">merge1 ::</span> <span class="dt">Ord</span> a <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]
+merge1 (x<span class="fu">:</span>xs) (y<span class="fu">:</span>ys)
+  <span class="fu">|</span> x <span class="fu">&lt;</span> y     <span class="fu">=</span> x <span class="fu">:</span> merge1 xs ys
+  <span class="fu">|</span> otherwise <span class="fu">=</span> y <span class="fu">:</span> merge1 xs ys
+merge1 _      _      <span class="fu">=</span> []</code></pre>
+<p>Does this function work as expected? I could run a few tries in GHCi, but that’s a little unsatisfactory: I have to do the work to think up a test, but I get to use it only once. Instead, it’s much better to write the test in my file, and that way I can re-run it every time I update my merge function.</p>
+<p>The technique described above is often referred to as <em>unit testing</em> and is used exensively in the real world. But is unit testing even that great? Sure you can re-run all your tests whenever you want, but that doesn’t get around the issue that you actually have to <em>write</em> all of the tests in the first place. Coming up with specific test cases is often tedious, repetitive, and <em>arbitrary</em>.</p>
+<p>Can we do better?</p>
+<h2 id="property-based-testing">Property-based testing</h2>
+<p>Writing test cases is boring. And, it’s easy to miss out on unexpected behavior. Much better (and, more along the lines of <em>wholemeal programming</em>) is to define <em>properties</em> we wish our function to have. Then, we can get the computer to generate the test cases for us.</p>
+<p>QuickCheck is the standard Haskell library for property-based testing. The idea is that you define a so-called <em>property</em>, which is then tested using pseudo-random data.</p>
+<p>For example:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">prop_numElements_merge ::</span> [<span class="dt">Integer</span>] <span class="ot">-&gt;</span> [<span class="dt">Integer</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+prop_numElements_merge xs ys
+  <span class="fu">=</span> length xs <span class="fu">+</span> length ys <span class="fu">==</span> length (merge1 xs ys)</code></pre>
+<p>This property is saying that the sum of the lengths of the input lists should be the same as the length of the output list. (It is customary to begin property names with <code>prop_</code>.) Let’s try it!</p>
+<pre><code>*Main&gt; quickCheck prop_numElements_merge
+*** Failed! Falsifiable (after 5 tests and 4 shrinks): 
+[]
+[0]
+</code></pre>
+<p>(Your results may differ slightly. Remember: it’s using randomness.)</p>
+<p>The first thing we notice is that our function is clearly wrong, with lots of stars and even an exclamation point! We then see that QuickCheck got through 5 tests before discovering the failing test case, so our function isn’t terrible. QuickCheck tells us what the failing arguments are: <code>[]</code> and <code>[0]</code>. Indeed GHCi tells us that <code>merge1 [] [0]</code> is <code>[]</code>, which is wrong.</p>
+<p>What’s so nice here is that QuickCheck found us such a nice, small test case to show that our function is wrong. The way it can do so is that it uses a technique called <em>shrinking</em>. After QuickCheck finds a test case that causes failure, it tries successively smaller and smaller arguments (according to a customizable definition of “smaller”) that keep failing. QuickCheck then reports only the smallest failing test case. This is wonderful, because otherwise the test cases QuickCheck produces would be unwieldy and hard to reason about.</p>
+<p>A final note about this property is that the type signature tells us that the property takes lists of integers, not any type <code>a</code>. This is so that GHC doesn’t choose a silly type to test on, such as <code>()</code>. We must always be careful about this when writing properties of polymorphic functions. Numbers are almost always a good choice.</p>
+<p><strong>Implications</strong></p>
+<p>In order to make our properties more universal, let’s generalize our test over implementations of our merging operation. You likely will not need to do this in your own code, but it is useful for us to be able to reuse properties for multiple implementations of the merge function.</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">type</span> <span class="dt">MergeFun</span> <span class="fu">=</span> [<span class="dt">Integer</span>] <span class="ot">-&gt;</span> [<span class="dt">Integer</span>] <span class="ot">-&gt;</span> [<span class="dt">Integer</span>]
+
+<span class="ot">prop_numElements ::</span> <span class="dt">MergeFun</span> <span class="ot">-&gt;</span> [<span class="dt">Integer</span>] <span class="ot">-&gt;</span> [<span class="dt">Integer</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+prop_numElements merge xs ys
+  <span class="fu">=</span> length xs <span class="fu">+</span> length ys <span class="fu">==</span> length (merge xs ys)</code></pre>
+<p>And, we take another stab at our function:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">merge2 ::</span> <span class="dt">MergeFun</span>
+merge2 all_xs<span class="fu">@</span>(x<span class="fu">:</span>xs) all_ys<span class="fu">@</span>(y<span class="fu">:</span>ys)
+  <span class="fu">|</span> x <span class="fu">&lt;</span> y     <span class="fu">=</span> x <span class="fu">:</span> merge4 xs all_ys
+  <span class="fu">|</span> otherwise <span class="fu">=</span> y <span class="fu">:</span> merge4 all_xs ys
+merge2 xs            ys            <span class="fu">=</span> xs <span class="fu">++</span> ys</code></pre>
+<pre><code>*Main&gt; quickCheck (prop_numElements merge4)
++++ OK, passed 100 tests.
+</code></pre>
+<p>Huzzah!</p>
+<p>Is that it? Are we done? Not quite. Let’s try another property:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">prop_sorted1 ::</span> <span class="dt">MergeFun</span> <span class="ot">-&gt;</span> [<span class="dt">Integer</span>] <span class="ot">-&gt;</span> [<span class="dt">Integer</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+prop_sorted1 merge xs ys
+  <span class="fu">=</span> merge xs ys <span class="fu">==</span> sort (xs <span class="fu">++</span> ys)</code></pre>
+<pre><code>*Main&gt; quickCheck (prop_sorted1 merge4)
+*** Failed! Falsifiable (after 4 tests and 3 shrinks): 
+[]
+[1,0]
+</code></pre>
+<p>Drat. QuickCheck quite reasonably tried the list <code>[1,0]</code> as an input to our function. Of course, this isn’t going to work because it’s not already sorted. We need to specify an implication property:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">prop_sorted2 ::</span> <span class="dt">MergeFun</span> <span class="ot">-&gt;</span> [<span class="dt">Integer</span>] <span class="ot">-&gt;</span> [<span class="dt">Integer</span>] <span class="ot">-&gt;</span> <span class="dt">Property</span>
+prop_sorted2 merge xs ys
+  <span class="fu">=</span> isSorted xs <span class="fu">&amp;&amp;</span> isSorted ys <span class="fu">==&gt;</span> merge xs ys <span class="fu">==</span> sort (xs <span class="fu">++</span> ys)
+
+<span class="ot">isSorted ::</span> <span class="dt">Ord</span> a <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+isSorted (a<span class="fu">:</span>b<span class="fu">:</span>rest) <span class="fu">=</span> a <span class="fu">&lt;=</span> b <span class="fu">&amp;&amp;</span> isSorted (b<span class="fu">:</span>rest)
+isSorted _          <span class="fu">=</span> <span class="dt">True</span>    <span class="co">-- must be fewer than 2 elements</span></code></pre>
+<p>In <code>prop_sorted</code>, we see the use of the operator <code>(==&gt;)</code>. Its type is <code>Testable prop =&gt; Bool -&gt; prop -&gt; Property</code>. It takes a <code>Bool</code> and a <code>Testable</code> thing and produces a <code>Property</code>. Note how <code>prop_sorted</code> returns a <code>Property</code>, not a <code>Bool</code>. We’ll sort these types out fully later, but I wanted to draw your attention to the appearance of <code>Property</code> there.</p>
+<p>Let’s see how this works:</p>
+<pre><code>*Main&gt; quickCheck (prop_sorted2 merge2)
+*** Gave up! Passed only 21 tests.
+</code></pre>
+<p>(And that took maybe 20 seconds.) There aren’t any failures, but there aren’t a lot of successes either. The problem is that QuickCheck will run the test only when both randomly-generated lists are in sorted order. The odds that a randomly-generated list of length <code>n</code> is sorted is <code>1/n!</code>, which is generally quite small odds. And we need <em>two</em> sorted lists. This isn’t going to work out well.</p>
+<p><strong>QuickCheck’s types</strong></p>
+<p>How does QuickCheck generate the arbitrary test cases, anyway? It uses the <code>Arbitrary</code> class:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">class</span> <span class="dt">Arbitrary</span> a <span class="kw">where</span>
+<span class="ot">  arbitrary ::</span> <span class="dt">Gen</span> a
+<span class="ot">  shrink    ::</span> a <span class="ot">-&gt;</span> [a]</code></pre>
+<p>We’ll leave <code>shrink</code> to the online documentation and focus on <code>arbitrary</code>. The <code>arbitrary</code> method gives us a <code>Gen a</code> – a generator for the type <code>a</code>. Of course, the <code>arbitrary</code> method for lists doesn’t care about ordering (indeed, it can’t, due to parametricity), but we do. Luckily, this is a common problem, and QuickCheck offers a solution in the form of <code>OrderedList</code>, a wrapper around lists that have the right <code>Arbitrary</code> instance for our needs:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="kw">newtype</span> <span class="dt">OrderedList</span> a <span class="fu">=</span> <span class="dt">Ordered</span> {<span class="ot"> getOrdered ::</span> [a] }
+<span class="kw">instance</span> (<span class="dt">Ord</span> a, <span class="dt">Arbitrary</span> a) <span class="ot">=&gt;</span> <span class="dt">Arbitrary</span> (<span class="dt">OrderedList</span> a) <span class="kw">where</span> <span class="fu">...</span></code></pre>
+<p>(<code>newtype</code> is almost just like <code>data</code>. Poke around online for more info.)</p>
+<p>Now, let’s rewrite our property:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">prop_sorted3 ::</span> <span class="dt">MergeFun</span>
+             <span class="ot">-&gt;</span> <span class="dt">OrderedList</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">OrderedList</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>
+prop_sorted3 merge (<span class="dt">Ordered</span> xs) (<span class="dt">Ordered</span> ys)
+  <span class="fu">=</span> merge xs ys <span class="fu">==</span> sort (xs <span class="fu">++</span> ys)</code></pre>
+<pre><code>*Main&gt; quickCheck (prop_sorted3 merge2)
++++ OK, passed 100 tests.
+</code></pre>
+<p>Huzzah! Just by changing the types a bit, we can affect instance selection to get what we want.</p>
+<p>Yet, this all seems like black magic. How does QuickCheck do it? Let’s look more in depth at the types.</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">quickCheck ::</span> <span class="dt">Testable</span> prop <span class="ot">=&gt;</span> prop <span class="ot">-&gt;</span> <span class="dt">IO</span> ()
+
+<span class="kw">class</span> <span class="dt">Testable</span> prop <span class="kw">where</span> <span class="fu">...</span>
+<span class="kw">instance</span> <span class="dt">Testable</span> <span class="dt">Bool</span> <span class="kw">where</span> <span class="fu">...</span>
+<span class="kw">instance</span> <span class="dt">Testable</span> <span class="dt">Property</span> <span class="kw">where</span> <span class="fu">...</span>
+<span class="kw">instance</span> (<span class="dt">Arbitrary</span> a, <span class="dt">Show</span> a, <span class="dt">Testable</span> prop) <span class="ot">=&gt;</span> <span class="dt">Testable</span> (a <span class="ot">-&gt;</span> prop) <span class="kw">where</span> <span class="fu">...</span></code></pre>
+<p>We can <code>quickCheck</code> anything that’s <code>Testable</code>. Boolean values are <code>Testable</code>, as are the somewhat mysterious <code>Property</code>s. But it’s the last instance listed here of <code>Testable</code> that piques our curiosity. It says that a <em>function</em> is <code>Testable</code> as long as its argument has an <code>arbitrary</code> method, the argument can be printed (in case of failure), and the result is <code>Testable</code>.</p>
+<p>Is <code>[Integer] -&gt; [Integer] -&gt; Bool</code> <code>Testable</code>? Sure it is. Recall that <code>[Integer] -&gt; [Integer] -&gt; Bool</code> is equivalent to <code>[Integer] -&gt; ([Integer] -&gt; Bool)</code>. Because <code>[Integer]</code> has both an <code>Arbitrary</code> instance and a <code>Show</code> instance, we can use the last instance above as long as <code>[Integer] -&gt; Bool</code> is <code>Testable</code>. And that’s <code>Testable</code> because we (still) have an <code>Arbitrary</code> and a <code>Show</code> instance for <code>[Integer]</code>, and <code>Bool</code> is <code>Testable</code>. So, that’s how <code>quickCheck</code> works – it uses the <code>Arbitrary</code> instances for the argument types. And, that’s how changing the argument types to <code>OrderedList Integer</code> got us the result we wanted.</p>
+<p><strong>Generating arbitrary data</strong></p>
+<p>When you want to use QuickCheck over your own datatypes, it is necessary to write an <code>Arbitrary</code> instance for them. Here, we’ll learn how to do so.</p>
+<p>Let’s say we have a custom list type</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">data</span> <span class="dt">MyList</span> a <span class="fu">=</span> <span class="dt">Nil</span> <span class="fu">|</span> <span class="dt">Cons</span> a (<span class="dt">MyList</span> a)
+
+<span class="kw">instance</span> <span class="dt">Show</span> a <span class="ot">=&gt;</span> <span class="dt">Show</span> (<span class="dt">MyList</span> a) <span class="kw">where</span>
+  show <span class="fu">=</span> show <span class="fu">.</span> toList
+  
+<span class="ot">toList ::</span> <span class="dt">MyList</span> a <span class="ot">-&gt;</span> [a]
+toList <span class="dt">Nil</span>           <span class="fu">=</span> []
+toList (a <span class="ot">`Cons`</span> as) <span class="fu">=</span> a <span class="fu">:</span> toList as
+
+<span class="ot">fromList ::</span> [a] <span class="ot">-&gt;</span> <span class="dt">MyList</span> a
+fromList []     <span class="fu">=</span> <span class="dt">Nil</span>
+fromList (a<span class="fu">:</span>as) <span class="fu">=</span> a <span class="ot">`Cons`</span> fromList as</code></pre>
+<p>If we want an <code>Arbitrary</code> instance, we must define the <code>arbitrary</code> method, of type <code>Gen (MyList a)</code>. Luckily for us, <code>Gen</code> is a monad (did you see that coming?), so some of its details are already familiar. We also realize that if we want arbitrary lists of <code>a</code>, we’ll need to make arbitrary <code>a</code>s. So, our instance looks like</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="kw">instance</span> <span class="dt">Arbitrary</span> a <span class="ot">=&gt;</span> <span class="dt">Arbitrary</span> (<span class="dt">MyList</span> a) <span class="kw">where</span>
+  arbitrary <span class="fu">=</span> genMyList1 </code></pre>
+<p>At this point, it’s helpful to check out the combinators available in the “Generator combinators” section of the <a href="http://hackage.haskell.org/package/QuickCheck-2.7.6/docs/Test-QuickCheck.html">QuickCheck documentation</a>.</p>
+<p>At this point, it’s helpful to think about how you, as a human, would generate an arbitrary list. One way to do it is to choose an arbitrary length (say, between 0 and 10), and then choose each element arbitrarily. Here is an implementation:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">genMyList1 ::</span> <span class="dt">Arbitrary</span> a <span class="ot">=&gt;</span> <span class="dt">Gen</span> (<span class="dt">MyList</span> a)
+genMyList1 <span class="fu">=</span> <span class="kw">do</span>
+  len <span class="ot">&lt;-</span> choose (<span class="dv">0</span>, <span class="dv">10</span>)
+  vals <span class="ot">&lt;-</span> replicateM len arbitrary
+  return <span class="fu">$</span> fromList vals</code></pre>
+<p>Let’s try it out:</p>
+<pre><code>*Main&gt; sample genMyList1
+[(),(),(),(),(),()]
+[]
+[(),(),(),(),(),(),(),(),()]
+[(),(),(),(),(),()]
+[(),(),(),(),(),(),(),(),()]
+[()]
+[(),(),(),(),(),(),(),()]
+[(),(),(),(),(),(),(),(),()]
+[(),(),()]
+[(),(),(),(),(),()]
+[(),(),(),(),(),(),(),(),(),()]
+</code></pre>
+<p>The arbitrary lengths are working, but the element generation sure is boring. Let’s use a type annotation to spruce things up (and override GHC’s default choice of <code>()</code>)!</p>
+<pre><code>*Main&gt; sample (genMyList1 :: Gen (MyList Integer))
+[0,0,0,0,0,0,0,0,0,0]
+[]
+[-2,3,1,0,4,-1]
+[-5,0,2,1,-1,-3]
+[-5,-6,-7,-2,-8,7,-3,4,-6]
+[4,-3,-3,2,-9,9]
+[]
+[10,-1]
+[9,-7,-16,3,15]
+[0,14,-1,0]
+[3,18,-13,-17,-20,-8]
+</code></pre>
+<p>That’s better.</p>
+<p>This generation still isn’t great, though, because perhaps a function written over <code>MyList</code>s fails only for lists longer than 10. We’d like unbounded lengths. Here’s one way to do it:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">genMyList2 ::</span> <span class="dt">Arbitrary</span> a <span class="ot">=&gt;</span> <span class="dt">Gen</span> (<span class="dt">MyList</span> a)
+genMyList2 <span class="fu">=</span> <span class="kw">do</span>
+  make_nil <span class="ot">&lt;-</span> arbitrary
+  <span class="kw">if</span> make_nil    <span class="co">-- type inference tells GHC that make_nil should be a Bool</span>
+     <span class="kw">then</span> return <span class="dt">Nil</span>
+     <span class="kw">else</span> <span class="kw">do</span>
+       x <span class="ot">&lt;-</span> arbitrary
+       xs <span class="ot">&lt;-</span> genMyList2
+       return (x <span class="ot">`Cons`</span> xs)</code></pre>
+<pre><code>*Main&gt; sample (genMyList2 :: Gen (MyList Integer))
+[0,0,0,0,0,0]
+[]
+[3,-3]
+[]
+[]
+[-1,-1]
+[-10]
+[]
+[]
+[11]
+[-20,-14]
+</code></pre>
+<p>The lengths are unbounded (you’ll just have to trust me there), but we’re getting a <em>lot</em> of empty lists. This is because at every link in the list, there’s a 50% chance of producing <code>Nil</code>. That means that a list of length <code>n</code> will appear only one out of <code>2^n</code> times. So, lengths are unbounded, but very unlikely.</p>
+<p>The way to make progress here is to use the <code>sized</code> combinator. QuickCheck is set up to try “simple” arbitrary things before “complex” arbitrary things. The way it does this is using a size parameter, internal to the <code>Gen</code> monad. The more generating QuickCheck does, the higher this parameter gets. We want to use the size parameter to do our generation.</p>
+<p>Let’s look at the type of <code>sized</code>:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">sized ::</span> (<span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Gen</span> a) <span class="ot">-&gt;</span> <span class="dt">Gen</span> a</code></pre>
+<p>An example is the best way of explaining how this works:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">genMyList3 ::</span> <span class="dt">Arbitrary</span> a <span class="ot">=&gt;</span> <span class="dt">Gen</span> (<span class="dt">MyList</span> a)
+genMyList3 <span class="fu">=</span> sized <span class="fu">$</span> \size <span class="ot">-&gt;</span> <span class="kw">do</span>
+  len <span class="ot">&lt;-</span> choose (<span class="dv">0</span>, size)
+  vals <span class="ot">&lt;-</span> replicateM len arbitrary
+  return <span class="fu">$</span> fromList vals</code></pre>
+<pre><code>*Main&gt; sample (genMyList3 :: Gen (MyList Integer))
+[]
+[-2]
+[-1,3,4]
+[-4,-2,1,-1]
+[]
+[]
+[12,3,11,0,3,-12,10,5,11,12]
+[-4,-8,-9,2,14,5,8,11,-1,7,11,-8,2,-6]
+[6,10,-5,15,6]
+[-3,-18,-4]
+[9,19,13,-19]
+</code></pre>
+<p>That worked nicely – the lists tend to get longer the later they appear. The idea is that <code>sized</code> takes a <em>continuation</em>: the thing to do with the size parameter. We just use a lambda function as the one argument to <code>sized</code>, where the lambda binds the <code>size</code> parameter, and then we can use it internally. If that’s too painful (say we just want to produce the size parameter, without using a continuation), you could always do something like this:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">getSize ::</span> <span class="dt">Gen</span> <span class="dt">Int</span>
+getSize <span class="fu">=</span> sized return</code></pre>
+<p>I’ll leave it to you to figure out how that works. Follow the types!</p>
+<p>As one last example, we can also choose arbitrary generators from a list based on frequency. Although the length method of <code>genMyList3</code> works well for lists, the following technique is much better for trees:</p>
+<pre class="sourceCode literate haskell"><code class="sourceCode haskell"><span class="ot">genMyList4 ::</span> <span class="dt">Arbitrary</span> a <span class="ot">=&gt;</span> <span class="dt">Gen</span> (<span class="dt">MyList</span> a)
+genMyList4 <span class="fu">=</span> sized <span class="fu">$</span> \size <span class="ot">-&gt;</span> <span class="kw">do</span>
+  frequency [ (<span class="dv">1</span>, return <span class="dt">Nil</span>)
+            , (size, <span class="kw">do</span> x <span class="ot">&lt;-</span> arbitrary
+                        xs <span class="ot">&lt;-</span> resize (size <span class="fu">-</span> <span class="dv">1</span>) genMyList4
+                        return (x <span class="ot">`Cons`</span> xs) )]</code></pre>
+<pre><code>*Main&gt; sample (genMyList4 :: Gen (MyList Integer))
+[]
+[2,0]
+[4,0,-1]
+[-6,-2,3,-1,-1]
+[6,6]
+[2,2,2,6,6]
+[-6,-9,5,-5]
+[8,7,5,7,7,-1,-2,-1,-5,-3]
+[15,-12,14,13,-5,-10,-9,-8,-2]
+[12,-11,-8,6,-6,-4,11,11]
+[-7,1,-3,4,-3,-9,4,6,-2,10,-9,-7,5,7,1]
+</code></pre>
+<p>Let’s look at the type of <code>frequency</code>:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="ot">frequency ::</span> [(<span class="dt">Int</span>, <span class="dt">Gen</span> a)] <span class="ot">-&gt;</span> <span class="dt">Gen</span> a</code></pre>
+<p>It takes a list of <code>(Int, Gen a)</code> pairs and produces a <code>Gen a</code>. The numbers in the list give the likelihood of choosing that element. Above, we fixed the frequency of <code>Nil</code> at 1, but let the likelihood of <code>Cons</code> vary according to the desired size. Then, in the recursive call to <code>genMyList4</code>, we used <code>resize</code> to lower the <code>size</code> parameter. Otherwise, it’s too likely to get a runaway list that goes on toward infinity.</p>
+<hr>
+<p><code>Generated 2015-03-24 21:45:39.534479</code></p>
+
+    </div>
+
+    <div id="footer"><center>
+      <font size="-2">Powered
+      by <a href="http://community.haskell.org/~ndm/shake/">shake</a>,
+      <a href="http://jaspervdj.be/hakyll/index.html">hakyll</a>,
+      <a href="http://johnmacfarlane.net/pandoc/">pandoc</a>,
+      <a href="http://projects.haskell.org/diagrams">diagrams</a>,
+      and <a href="http://www.andres-loeh.de/lhs2tex/">lhs2TeX</a>.
+      </font></center><font size="-2">
+    </font></div><font size="-2">
+  </font></div><font size="-2">
+
+
+
+</font></body></html>
