@@ -1,9 +1,9 @@
 --Generates Hailstone Sequence for a number
 
 hailstone :: (Integral a) => a -> a
-hailstone x = if x `mod` 2 == 0
-              then x `div` 2
-              else x * 3 + 1
+hailstone n
+        |n `mod` 2 == 0         = n `div` 2
+        |otherwise              = 3*n + 1
 
 hailstoneSequence :: (Integral a) => a -> [a]
 hailstoneSequence 1 = [1]
