@@ -26,7 +26,6 @@ exactMatches :: Code -> Code -> Int
 exactMatches = undefined
 
 -- Exercise 2 -----------------------------------------
-
 -- For each peg in xs, count how many times is occurs in ys
 countColors :: Code -> [Int]
 countColors = undefined
