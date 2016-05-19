@@ -3,6 +3,18 @@
 front22 :: String -> String
 front22 [] = []
 front22 [x1] = [x1] ++ [x1] ++ [x1]
-front22 orig@(x1:(x2:xs)) = [x1] ++ [x2] ++ orig ++ [x1] ++ [y2]
+front22 orig@(x1:(x2:xs)) = [x1] ++ [x2] ++ orig ++ [x1] ++ [x2]
 --Left Riemann Sum Calculator with integral inputs
-leftSum :: Int -> Int -> Int
+--leftSum :: Int -> Int -> Int
+
+data Peg = Red | Green | Blue | Yellow | Orange | Purple
+         deriving (Show, Eq, Ord)
+
+isA :: Peg -> Peg-> Bool
+isA x y = x == y
+x :: Peg
+x = Red
+y :: Peg
+y = Green
+z :: Peg
+z = Red

@@ -19,11 +19,16 @@ data Move = Move Code Int Int
 colors :: [Peg]
 colors = [Red, Green, Blue, Yellow, Orange, Purple]
 
+idek :: Code
+idek = [Red, Green, Green, Blue]
+
+idek2 :: Code
+idek2 = [Red, Green, Blue, Yellow]
 -- Exercise 1 -----------------------------------------
 
 -- Get the number of exact matches between the actual code and the guess
 exactMatches :: Code -> Code -> Int
-exactMatches = undefined
+exactMatches x y = length (filter (\(peg1, peg2) -> peg1 == peg2) (zip x y))
 
 -- Exercise 2 -----------------------------------------
 -- For each peg in xs, count how many times is occurs in ys
