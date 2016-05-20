@@ -1,0 +1,8 @@
+sumSquares :: Int
+sumSquares = sum (map (\x -> x * x) [1..100])
+
+square :: Int
+square = sum([1..100]) * sum ([1..100])
+
+main :: IO()
+main = print (sumSquares - square)
