@@ -6,3 +6,4 @@ square = sum([1..100]) * sum ([1..100])
 
 main :: IO()
 main = print (sumSquares - square)
+--Takes about .052 seconds on the lenovo

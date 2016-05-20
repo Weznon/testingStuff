@@ -20,3 +20,4 @@ bash = find (testList . isDivisible) [1..maxNum]
 
 main :: IO()
 main = print (bash)
+--Takes about 22.5 seconds on the lenovo
