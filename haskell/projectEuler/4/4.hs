@@ -10,3 +10,4 @@ solve = filter (isPalin) (makeList)
 main :: IO()
 main = print (maximum solve)
 --Takes .390 seconds on the lenovo
+--Takes .082 seconds on the dell

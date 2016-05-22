@@ -10,3 +10,4 @@ answer = maximum ([multiplyNumber x | x <- [0..987]])
 main :: IO()
 main = print answer
 --Takes .118 seconds on the lenovo
+--Takes .019 seconds on the dell

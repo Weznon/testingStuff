@@ -14,3 +14,4 @@ answer = filter (/= 0) [if (testPythag x y z && x + y + z == 1000) then x * y * 
 
 main :: IO()
 main = print answer
+--takes about 4.920 seconds on the dell
