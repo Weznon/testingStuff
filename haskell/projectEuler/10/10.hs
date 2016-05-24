@@ -1,6 +1,3 @@
-primes = 2:primes'
-        where
-                definitions
 main :: IO()
 main = print (primes !! 10000)
 
