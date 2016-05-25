@@ -6,7 +6,7 @@
 
 --withDivisors :: [Int]
 --withDivisors = filter (\x -> length(testDivisors x) >= 500) triangleNumbers
-
+--Using these it took literally 25 minutes
 divisors :: Int -> [Int]
 divisors x = 1 : (divisors' x 2)
                 where divisors' z n
@@ -23,3 +23,4 @@ triangdivs = [(n * (n + 1) `div` 2, numDiv n) | n <- [1..]]
                         where divi = length . divisors
 main :: IO()
 main = print (fst . head . filter ((> 500) . snd) $ triangdivs)
+--using this it took .021 seconds
