@@ -58,7 +58,8 @@ filterCodes x y = filter (\z -> isConsistent x z) y
 -- Exercise 6 -----------------------------------------
 
 allCodes :: Int -> [Code]
-allCodes = undefined
+allCodes 1 = [[Red], [Green], [Blue], [Yellow], [Orange], [Purple]]
+allCodes x = concatMap (\z -> [z ++ [Red], z ++ [Green], z ++ [Blue], z ++ [Yellow], z ++ [Orange], z ++ [Purple]]) (allCodes (x-1))
 
 -- Exercise 7 -----------------------------------------
 
