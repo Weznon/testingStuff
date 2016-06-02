@@ -1,0 +1,112 @@
+Python 3.5.1 (default, Mar  3 2016, 09:29:07) 
+[GCC 5.3.0] on linux
+Type "copyright", "credits" or "license()" for more information.
+>>> 
+=============================== RESTART: Shell ===============================
+>>> 
+=============================== RESTART: Shell ===============================
+>>> 
+=============================== RESTART: Shell ===============================
+>>> from graphics import *
+>>> def main ():
+	win = GraphWin("KMS", 100, 100)
+	c = Circle(Point(50, 50), 10)
+	c.draw(win)
+	win.getMouse()
+	win.close()
+
+	
+>>> main()
+>>> 
+=============================== RESTART: Shell ===============================
+>>> from graphics import *
+>>> win = GraphWin("KMS, 200, 200)
+	       
+SyntaxError: EOL while scanning string literal
+>>> win = GraphWin("KMS", 200, 200)
+>>> plot(1, 1, Blue)
+Traceback (most recent call last):
+  File "<pyshell#13>", line 1, in <module>
+    plot(1, 1, Blue)
+NameError: name 'plot' is not defined
+>>> win.setBackground(Blue)
+Traceback (most recent call last):
+  File "<pyshell#14>", line 1, in <module>
+    win.setBackground(Blue)
+NameError: name 'Blue' is not defined
+>>> win.setBackground(Black)
+Traceback (most recent call last):
+  File "<pyshell#15>", line 1, in <module>
+    win.setBackground(Black)
+NameError: name 'Black' is not defined
+>>> win.setBackground(blue)
+Traceback (most recent call last):
+  File "<pyshell#16>", line 1, in <module>
+    win.setBackground(blue)
+NameError: name 'blue' is not defined
+>>> win.setBackground()
+Traceback (most recent call last):
+  File "<pyshell#17>", line 1, in <module>
+    win.setBackground()
+TypeError: setBackground() missing 1 required positional argument: 'color'
+>>> win.setBackground("Blue")
+>>> win.plot(x, y, "Black")
+Traceback (most recent call last):
+  File "<pyshell#19>", line 1, in <module>
+    win.plot(x, y, "Black")
+NameError: name 'x' is not defined
+>>> win.plot(15, 15, "Black")
+>>> win.getMouse()
+<graphics.Point object at 0x7f5615659588>
+>>> line1 = Line(Point (0, 0), Point (50, 50))
+>>> win.draw(line1)
+Traceback (most recent call last):
+  File "<pyshell#23>", line 1, in <module>
+    win.draw(line1)
+AttributeError: 'GraphWin' object has no attribute 'draw'
+>>> line1.draw(win)
+>>> import readline
+>>> redline.write_history_file('/home/programming/git/python/graphicsSession')
+Traceback (most recent call last):
+  File "<pyshell#26>", line 1, in <module>
+    redline.write_history_file('/home/programming/git/python/graphicsSession')
+NameError: name 'redline' is not defined
+>>> Traceback (most recent call last):
+	>>> redline.write_history_file('/home/programming/git/python/graphicsSession')
+	
+SyntaxError: invalid syntax
+>>> readline.write_history_file('/home/programming/git/python/graphicsSession')
+Traceback (most recent call last):
+  File "<pyshell#28>", line 1, in <module>
+    readline.write_history_file('/home/programming/git/python/graphicsSession')
+FileNotFoundError: [Errno 2] No such file or directory
+>>> readline.write_history_file('/home/programming/git/python/')
+Traceback (most recent call last):
+  File "<pyshell#29>", line 1, in <module>
+    readline.write_history_file('/home/programming/git/python/')
+FileNotFoundError: [Errno 2] No such file or directory
+>>> readline.write_history_file('/home/programming/git/python')
+Traceback (most recent call last):
+  File "<pyshell#30>", line 1, in <module>
+    readline.write_history_file('/home/programming/git/python')
+FileNotFoundError: [Errno 2] No such file or directory
+>>> import readline
+readline.write_history_file('/home/ahj/history')
+SyntaxError: multiple statements found while compiling a single statement
+>>> readline.write_history_file('/home/ahj/history')
+Traceback (most recent call last):
+  File "<pyshell#32>", line 1, in <module>
+    readline.write_history_file('/home/ahj/history')
+FileNotFoundError: [Errno 2] No such file or directory
+>>> readline.write_history_file('/home')
+Traceback (most recent call last):
+  File "<pyshell#33>", line 1, in <module>
+    readline.write_history_file('/home')
+IsADirectoryError: [Errno 21] Is a directory
+>>> readline.write_history_file('/home/weznon/programming/git/python/')
+Traceback (most recent call last):
+  File "<pyshell#34>", line 1, in <module>
+    readline.write_history_file('/home/weznon/programming/git/python/')
+IsADirectoryError: [Errno 21] Is a directory
+>>> readline.write_history_file('/home/weznon/programming/git/python/graphicsSession')
+>>> 
