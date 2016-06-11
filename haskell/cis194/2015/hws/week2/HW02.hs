@@ -64,7 +64,7 @@ allCodes x = concatMap (\z -> [z ++ [Red], z ++ [Green], z ++ [Blue], z ++ [Yell
 -- Exercise 7 -----------------------------------------
 
 solve :: Code -> [Move]
-solve = undefined
+solve x =
 
 -- Bonus ----------------------------------------------
 
