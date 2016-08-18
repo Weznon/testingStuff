@@ -10,4 +10,9 @@ doubleEveryOther :: [Integer] -> [Integer]
 doubleEveryOther xs = [if (even c) then (xs !! c) * 2 else xs !! c | c <- [0..(length xs) - 1]]
 
 sumDigits :: [Integer] -> Integer
-sumDigits x = sum (curry (map toDigits x))
+sumDigits x = sum (concat (map toDigits x))
+
+validate :: Integer -> Bool
+validate x = sumDigits (doubleEveryOther dig) `rem` 10 == 0
+                where dig = toDigits x
+                      revDig = toDigitsRev x
