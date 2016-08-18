@@ -18,3 +18,8 @@ y :: Peg
 y = Green
 z :: Peg
 z = Red
+
+--Convert to binary
+conBin :: Integer -> Integer
+conBin x = read (conv x)
+        where conv x = (if (x `div` 2 == 0) then [] else conv (x `div` 2)) ++ (show (x `rem` 2))
