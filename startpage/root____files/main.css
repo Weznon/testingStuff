@@ -5,7 +5,7 @@ body {
     position: absolute;
     height: 100%;
     width: 100%;
-    background: #333;
+     background-image: url("norwata-artwork-dragonwithgrassland4.jpg");
     padding-left: 2ex;
     top: -2ex;
 }
@@ -15,7 +15,7 @@ p {
 #terminal {
     overflow-y: auto;
     overflow-x: hidden;
-    color: #BBB;
+    color: #333333;
     top: -2ex;
 }
 #prompt, #input, .output, .prompt_Old, .input_Old, #caret, .ppost, #post{
