@@ -6,6 +6,7 @@
 function redir(input, args)
 {
 	if (input == "4chan" && args == "empty") {var http = "https://www." + input + ".org";}
+	else if (input == "gmail") {var http = "https://www.gmail.com";}	
 	else if (input =="4chan") {var http = "https://www." + input + ".org/" + args;}
 	else if (input =="github") {var http = "https://www.github.com";}	
 	else if (input == "drive") { var http = "https://www." + input + ".google.com";}
