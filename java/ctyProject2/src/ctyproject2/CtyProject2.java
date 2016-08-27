@@ -10,12 +10,19 @@ import java.util.Random;
  *
  * @author weznon
  */
+
 public class CtyProject2 {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        //Change ugh and comment all the prints to calculate percentages
+        int hw = 0;
+        int tw = 0;
+        int tie = 0;
+        for (int ugh = 0; ugh < 1; ugh++) {
+        
         System.out.println("AND THEIR OFF");
         int tortoise = 1;
         int hare = 1;
@@ -23,18 +30,26 @@ public class CtyProject2 {
         tortoise = increment(1, tortoise);
         hare = increment(0, hare);
         while (tortoise < 50 && hare < 50) {
-            System.out.println(printer(tortoise, hare));
+        System.out.println(printer(tortoise, hare));
             tortoise = increment(1, tortoise);
             hare = increment(0, hare);
         }
         if(tortoise >= 50 && hare >= 50) {
             System.out.println("ITS A TIE!");
+            tie++;
         } else if(tortoise > hare) { 
             System.out.println("TORTOISE WINS, HARE CAN GO SUCK A DICK");
+            tw++;
         } else {
             System.out.println("HARE SUCKS SORRY WINS NOT SUCKS");
+            hw++;
         }
     }
+        System.out.println(hw);
+        System.out.println(tw);
+        System.out.println(tie);
+    }
+    
     public static int increment(int x, int y) {
         Random random = new Random();
         int idek = y;
