@@ -10,8 +10,10 @@ data StatTable = StatTable STR INT WIS DEX CON CHA
                 deriving (Show, Eq)
 
 --Jobs
-data Job =  Blacksmith
+data Job = Blacksmith
+         | Merchant
+         | Guard
+--idk need more
 
-type
-data Person =   Adult StatTable
-                Child StatTable
+data Person = Adult StatTable
+            | Child StatTable
