@@ -20,9 +20,16 @@ parseStats inputS = StatTable (read (b !! 0)) (read (b !! 1)) (read (b !! 2)) (r
 "Bobby Tables the God, 18, Gaurd, 5 5 5 5 5 5, Wounded"
 "Bobby Tables the Child, 16, 5 5 5 5 5 5, Wounded"
 and turns it into a Person data
+18 is the default age for adulthood. Use parsePersonAge if you want to change that
 -}
 parsePerson :: String -> Person
 parsePerson inputS = if (read (broken !! 1) >= 18)
                         then Adult (broken !! 0) (read (broken !! 1)) (read (broken !! 2)) (parseStats (broken !! 3)) (map read (words (broken !! 4)))
                         else Child (broken !! 0) (read (broken !! 1)) (parseStats (broken !! 2)) (map read (words (broken !! 3)))
                 where broken = (breaker inputS)
+
+parsePersonAge :: String -> Int -> Person
+parsePersonAge inputS inputI = if (read (broken !! 1) >= inputI)
+                                then Adult (broken !! 0) (read (broken !! 1)) (read (broken !! 2)) (parseStats (broken !! 3)) (map read (words (broken !! 4)))
+                                else Child (broken !! 0) (read (broken !! 1)) (parseStats (broken !! 2)) (map read (words (broken !! 3)))
+                        where broken = breaker inputS

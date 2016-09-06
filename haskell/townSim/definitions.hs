@@ -1,6 +1,6 @@
 module Defines where
 
---Stats
+--Some simple type synonyms, to make it easier to read functions
 type STR = Int
 type INT = Int
 type WIS = Int
@@ -9,20 +9,23 @@ type CON = Int
 type CHA = Int
 type Age = Int
 type Name = String
---For easier stat stuff
+
+--Easier way to represent stats, makes it easier to read
 data StatTable = StatTable STR INT WIS DEX CON CHA
                 deriving (Show, Eq, Read)
 
---Jobs
+--Jobs. Used to determine day to day activity
 data Job = Blacksmith
          | Merchant
          | Guard
          deriving (Show, Eq, Read)
 --idk need more
+--Statuses. Used to represent what happened during the day, provides debuffs and buffs
 data Status = Wounded
             | Sickly
         deriving (Show, Eq, Read)
 
+--Since Statuses can be a lot, it's best to do it this way as opposed to a status table
 type Statuses = [Status]
 
 data Person = Adult Name Age Job StatTable Statuses
