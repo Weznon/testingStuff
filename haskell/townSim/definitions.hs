@@ -11,12 +11,13 @@ type Age = Int
 type Name = String
 --For easier stat stuff
 data StatTable = StatTable STR INT WIS DEX CON CHA
-                deriving (Show, Eq)
+                deriving (Show, Eq, Read)
 
 --Jobs
 data Job = Blacksmith
          | Merchant
          | Guard
+         deriving (Show, Eq, Read)
 --idk need more
 data Status = Wounded
             | Sickly
@@ -24,7 +25,7 @@ data Status = Wounded
 
 type Statuses = [Status]
 
-data Person = Adult Name Age StatTable Statuses
+data Person = Adult Name Age Job StatTable Statuses
             | Child Name Age StatTable Statuses
         deriving (Show, Eq)
 
