@@ -18,13 +18,14 @@ data Job = Blacksmith
          | Merchant
          | Guard
 --idk need more
-data Status = Wounded1
-            | Wounded2
-            | Wounded3
+data Status = Wounded
+            | Sickly
+        deriving (Show, Eq, Read)
 
 type Statuses = [Status]
 
 data Person = Adult Name Age StatTable Statuses
             | Child Name Age StatTable Statuses
+        deriving (Show, Eq)
 
 type Population = [Person]
