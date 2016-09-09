@@ -33,10 +33,11 @@ data Item       = Dagger
                 deriving (Show, Eq, Read)
 
 type Inventory  = [Item]
-type WorkTable  = [Item]
 
-data Person     = Adult Name Age Job StatTable Statuses --Inventory WorkTable
+type WorkTable  = [(Item, Int)]
+
+data Person     = Adult Name Age Job StatTable Statuses Inventory --WorkTable
                 | Child Name Age StatTable Statuses
-                deriving (Show, Eq)
+                deriving (Show, Eq, Read)
 
 type Population = [Person]
