@@ -8,75 +8,71 @@
 
 		<script src="./root____files/jquery.min.js"></script>
         <style>
-      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
-      body{
-  background-color:#222;
-  margin:20px auto;
-  text-align:center;
-}
-br{
- line-height:0px;
-}
-.dot, .dotfilled, .blank{
-  position:relative;
-  width:20px;
-  height:20px;
-  margin:10px;
+            body{
+                background-color:#222;
+                margin:20px auto;
+                text-align:center;
+            }
+            br{
+                line-height:0px;
+            }
+            .dot, .dotfilled, .blank{
+                position:relative;
+                width:20px;
+                height:20px;
+                margin:10px;
+                background-repeat:no-repeat;
+            }
 
-  background-repeat:no-repeat;
+            span{
+                line-height: 50px;
+                display: inline-block;
+                vertical-align: middle;
+                margin:10px;
+            }
 
-}
+            #digital{
+                font-family:Courier New,Courier,monospace;
+                font-size:30px;
+                font-weight: bold;
+                color: #625641;
+                background-color: #E5D7A6;
+                opacity: 0.4;
+            }
 
-span{
-    line-height: 50px;
-    display: inline-block;
-    vertical-align: middle;
-    margin:10px;
-}
+            #actual{
+                font-family:Courier New,Courier,monospace;
+                font-size:30px;
+                font-weight: bold;
+                color: #231D18;
+                background-color: #E5D7A6;
+                opacity: 0.4;
+            }
+            #bincont{
+                background-color: #E5D7A6;
+                opacity: 0.4;
+            }
 
-#digital{
-  font-family:Courier New,Courier,monospace;
-  font-size:30px;
-  font-weight: bold;
-  color: #625641;
-  background-color: #E5D7A6;
-  opacity: 0.4;
-}
-
-#actual{
-  font-family:Courier New,Courier,monospace;
-  font-size:30px;
-  font-weight: bold;
-  color: #231D18;
-  background-color: #E5D7A6;
-  opacity: 0.4;
-}
-#bincont{
-    background-color: #E5D7A6;
-    opacity: 0.4;
-}
-
-    </style>
-    <style type="text/css">
-    body {
-        overflow:hidden;
-    }
-    </style>
+        </style>
+        <style type="text/css">
+            body {
+                overflow:hidden;
+            }
+        </style>
 
         <script src="js/prefixfree.min.js"></script>
 
     </head>
     <body>
-<br>
+        <br>
 		<div id="terminal" style="height: 500px; width: 500px;text-align:left;">
 		</div>
         <br>
         <div id="bincont" style="width: 500px"></div>
-    <div id="digital" style="width: 500px"></div>
-    <div id="actual" style="width: 500px"></div>
+        <div id="digital" style="width: 500px"></div>
+        <div id="actual" style="width: 500px"></div>
         <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-
-            <script src="js/index.js"></script>
+        <script src="js/index.js"></script>
 
 
 <!-- #231D18
