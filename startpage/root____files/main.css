@@ -5,7 +5,8 @@ body {
     position: absolute;
     height: 100%;
     width: 100%;
-     background-image: url("norwata-artwork-dragonwithgrassland4.jpg");
+    background-image: url("turtle.jpg");
+
     padding-left: 2ex;
     top: -2ex;
 }
@@ -15,8 +16,12 @@ p {
 #terminal {
     overflow-y: auto;
     overflow-x: hidden;
-    color: #333333;
+    color: #231D18;
     top: -2ex;
+    border: 1px solid #6e6458;
+    overflow: hidden;
+    background-color: #E5D7A6;
+    opacity: 0.4;
 }
 #prompt, #input, .output, .prompt_Old, .input_Old, #caret, .ppost, #post{
     display: inline;
@@ -30,7 +35,7 @@ p {
     display: none;
 }
 .output {
-    color: #777;
+    color: #625641;
 }
 #post {
     position: relative;
@@ -51,14 +56,14 @@ p {
 }
 #input {
     color: transparent;
-    text-shadow: 0px 0px 0px #BBB;
+    text-shadow: 0px 0px 0px #446237;
 }
 
 .rssFeedList{
-    width:450px; 
+    width:450px;
     list-style:none outside none;
-    background-color: transparent; 
-    border:0px solid #D3CAD7; 
+    background-color: transparent;
+    border:0px solid #D3CAD7;
     margin-left: 3ex;
 }
 .rssFeedList li {
@@ -67,7 +72,7 @@ p {
 .rssFeedList li:last-child {
     padding-bottom: 0ex !important;
 }
-.itemTitle a:hover{ 
+.itemTitle a:hover{
     text-decoration: none;
 }
 
@@ -83,8 +88,8 @@ p {
 }
 
 .itemTitle a{
-    color:#BBB !important; 
-    text-decoration: none 
+    color:#BBB !important;
+    text-decoration: none
 }
 
 
