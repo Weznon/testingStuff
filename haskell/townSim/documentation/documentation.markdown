@@ -10,6 +10,8 @@
         * Stat Modifiers
     * Inventory
         * Used to represent gear
+    * WorkTable
+        * What the civilian is working on
 * Buildings
     * Provide Various bonuses to the town, such as increased labour for certain  jobs
 * Stockpiles

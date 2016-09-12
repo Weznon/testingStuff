@@ -114,7 +114,7 @@ function initTerminal() {
     // SoundCloud Part of the terminal application
     "sc": {
       // Login into Soundcloud
-      // TODO: add secret (must have PHP server and secret id to add it), it will be in the Auth0 tocken version
+      // : add secret (must have PHP server and secret id to add it), it will be in the Auth0 tocken version
       "login" : function() {
         scPlayer = new SoundCloudAudio(clientid);
 

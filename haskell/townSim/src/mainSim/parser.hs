@@ -42,6 +42,7 @@ parsePerson inputS      = if (read (broken !! 1) >= 18)
 {- Same as parsePerson, but with a changeable age limit.
 Set the config to use a different number if using a different race
 -}
+--TODO :: NEEDS TO BE FIXED WITH NEW PERSON TYPE
 parsePersonAge :: String -> Int -> Person
 parsePersonAge inputS inputI    = if (read (broken !! 1) >= inputI)
                                         then Adult (broken !! 0) (read (broken !! 1)) (read (broken !! 2)) (parseStats (broken !! 3)) (map read (words (broken !! 4))) (map read (words (broken !! 5)))
