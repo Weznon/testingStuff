@@ -8,4 +8,4 @@ eval (Add a b) = (eval a) + (eval b)
 eval (Mul a b) = (eval a) * (eval b)
 
 evalStr :: String -> Maybe Integer
-evalStr x = fmap eval (Parser.parseExp Lit Add Mul x)
+evalStr x = fmap eval (Parser.parseExp Lit Add Mul x)Q
