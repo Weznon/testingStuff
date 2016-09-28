@@ -35,7 +35,7 @@ p {
 }
 #prompt, #input, .output, .prompt_Old, .input_Old, #caret, .ppost, #post{
     display: inline;
-    font-family: "Hack", monospace;
+    font-family: "Hasklig", monospace;
     font-size: 8pt;
     outline: none;
     text-decoration: none;
@@ -92,7 +92,7 @@ p {
 }
 
 .rssFeedList a , .itemDate, p ,pre, li{
-    font-family: "Sazanami Gothic", monospace;
+    font-family: "Hasklig", monospace;
     font-size: 8pt;
     text-decoration: none
 }
