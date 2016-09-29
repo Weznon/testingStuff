@@ -1,0 +1,32 @@
+body {
+    background-color: #7C84AE;
+}
+
+#sidebar {
+    background-color: #525C91;
+    text-align: center;
+}
+
+.sidebut {
+            border: 1px solid;
+            width: 50%;
+            border-color: #022735;
+            height: 20px;
+        }
+
+        .sidebut a {
+            display: block;
+            background: #27586B;
+            height: 100%;
+            color: #6D92A0;
+            text-align: center;
+            border-color: #022735;
+            width: 50%
+        }
+
+        .sidebut a:hover {
+            background: #27586B;
+            color: #6D92A0;
+            border-color: #022735;
+            width: 100%;
+        }
