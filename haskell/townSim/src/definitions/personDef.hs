@@ -1,7 +1,6 @@
-module Defines where
-
---TODO :: Make seperate definition files, for people, items, jobs, etc. It'll cut down on imports hopefullyfinalize definitions for all things
---Person Definition
+module PersonDef where
+    import      ItemDef
+--Definition of a person
 data Person     = Adult Name Age Job StatTable Statuses WorkTable
                 | Child Name Age StatTable Statuses
                 deriving (Show, Eq, Read)
@@ -25,32 +24,23 @@ type CHA        = Int
 
 --Jobs. Used to determine day to day activity
 data Job        = Blacksmith
-                | Merchant
                 | Guard
+                | Engineer
+                | Farmer
+                | Worker
+                | Weaver
+                | Mason
+                | Carpenter
+                | Hunter
                 deriving (Show, Eq, Read)
---idk need more
 
 --Statuses. Used to represent what happened during the day, provides debuffs and buffs
 data Status     = Wounded
                 | Sickly
+                | Inspired
+                | Tired
+                | Drunk
                 deriving (Show, Eq, Read)
 
 --Since Statuses can be a lot, it's best to do it this way as opposed to a a
 type Statuses   = [Status]
-
-data ItemWeapon = Dagger
-                | Sword
-                deriving (Show, Eq, Read)
-
-data ItemFood   = Bread
-                | Apple
-                deriving (Show, Eq, Read)
-
-data Item       = ItemFood
-                | ItemWeapon
-
-type Stockpile  = [Item]
-
-type WorkTable  = [(Item, Int)]
-
-type Population = [Person]

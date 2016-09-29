@@ -12,9 +12,6 @@ isComplete :: WorkTable -> Int -> Bool
 isComplete inputWT inputI       = snd itemToCheck <= inputI
                                 where itemToCheck       = head inputWT
 
---Takes a inventory and worktable, and takes the WorkTable and moves the first thing to inventory
-completedMover :: Inventory -> WorkTable -> Inventory
-completedMover inputI inputWT   = fst (head inputWT) : inputI
 
 
 --Changes to Statuses, Inventory, and Work Table
