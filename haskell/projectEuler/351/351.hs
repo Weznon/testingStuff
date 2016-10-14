@@ -18,6 +18,7 @@ primeFactorsRep n
   | otherwise = factors ++ primeFactorsRep (n `div` (head factors))
   where factors = take 1 $ filter (\x -> (n `mod` x) == 0) primesTest
         primesTest = takeWhile (\x -> x <= n) primes
+
 remDup :: [Integer] -> [Integer]
 remDup [] = []
 remDup [x] = [x]
@@ -27,7 +28,9 @@ remDup (x:y:xs) = if (x == y) then (remDup (x:xs)) else x:(remDup (y:xs))
 primeFactors :: Integer -> [Integer]
 primeFactors = remDup . primeFactorsRep
 totient :: Integer -> Integer
-totient n = numerator `div` denominator
+totient n
+    |even n     = totient (n `div` 2)
+    |otherwise  = numerator `div` denominator
             where numerator = n * (product (map (\x -> x - 1) (primeFactors n)))
                   denominator = product (primeFactors n)
 
