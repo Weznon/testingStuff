@@ -10,6 +10,8 @@ doesDivide n m = n `mod` m == 0
 --primeFactors n = if (prime == []) then [n] else prime
 --                where --sqrtN = toInteger (floor (sqrt (fromInteger n)))
 --                      prime = filter (\x -> doesDivide n x) ((takeWhile (\x -> x <= n) primes))
+--Instead of taking prime factorization, generate a list of all possible prime factorizations
+--should be must faster
 
 primeFactorsRep :: Integer -> [Integer]
 primeFactorsRep 1 = []
