@@ -17,7 +17,7 @@ allPrimeTable = [primeTable x | x <- primeLim]
 
 primeFactorTable :: [[Int]]
 primeFactorTable = [filter (\x -> x /= 0) [(allPrimeTable !! y) !! x | y <- [0..(length allPrimeTable - 1)]] | x <- [0..99999999]]
-
+--Instead of filtering zeros, could empty lists be used as a replacment, to help speed it up?
 totient :: Int -> [Int] -> Int
 totient x y = numerator `div` denominator
   where numerator = x * (product (map (\x -> x - 1) y))
