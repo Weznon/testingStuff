@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>~/programming/git/haskell/projectEuler/351/primeGen.hs.html</title>
+<meta name="Generator" content="Vim/8.0">
+<meta name="plugin-version" content="vim7.4_v2">
+<meta name="syntax" content="haskell">
+<meta name="settings" content="number_lines,use_css,pre_wrap,no_foldcolumn,expand_tabs,line_ids,prevent_copy=">
+<meta name="colorscheme" content="maroloccio2">
+<style type="text/css">
+<!--
+pre { white-space: pre-wrap; font-family: monospace; color: #8787af; background-color: #ffffff; }
+body { font-family: monospace; color: #8787af; background-color: #ffffff; }
+* { font-size: 1em; }
+.Conceal { color: #c0c0c0; background-color: #6c6c6c; padding-bottom: 1px; }
+.Operator { color: #005faf; }
+.LineNr { color: #3a3a3a; background-color: #1c1c1c; padding-bottom: 1px; }
+.Structure { color: #005faf; }
+.Number { color: #87afd7; }
+.Comment { color: #875f87; }
+.Delimiter { color: #005faf; }
+.Conditional { color: #005faf; }
+.Type { color: #005faf; }
+-->
+</style>
+
+<script type='text/javascript'>
+<!--
+
+/* function to open any folds containing a jumped-to line before jumping to it */
+function JumpToLine()
+{
+  var lineNum;
+  lineNum = window.location.hash;
+  lineNum = lineNum.substr(1); /* strip off '#' */
+
+  if (lineNum.indexOf('L') == -1) {
+    lineNum = 'L'+lineNum;
+  }
+  lineElem = document.getElementById(lineNum);
+  /* Always jump to new location even if the line was hidden inside a fold, or
+   * we corrected the raw number to a line ID.
+   */
+  if (lineElem) {
+    lineElem.scrollIntoView(true);
+  }
+  return true;
+}
+if ('onhashchange' in window) {
+  window.onhashchange = JumpToLine;
+}
+
+-->
+</script>
+</head>
+<body onload='JumpToLine();'>
+<pre id='vimCodeElement'>
+<span id="L1" class="LineNr"> 1 </span>primes <span class="Operator">::</span> <span class="Delimiter">[</span><span class="Type">Int</span><span class="Delimiter">]</span>
+<span id="L2" class="LineNr"> 2 </span>primes <span class="Operator">=</span> <span class="Number">2</span> <span class="Operator">:</span> primes'
+<span id="L3" class="LineNr"> 3 </span>  <span class="Structure">where</span> isPrime <span class="Delimiter">(</span>p<span class="Operator">:</span>ps<span class="Delimiter">)</span> n <span class="Operator">=</span> p<span class="Operator">*</span>p <span class="Operator">&gt;</span> n <span class="Conceal">∨</span> n <span class="Operator">`rem`</span> p <span class="Conceal">≢</span> <span class="Number">0</span> <span class="Conceal">∧</span> isPrime ps n
+<span id="L4" class="LineNr"> 4 </span>        primes' <span class="Operator">=</span> <span class="Number">3</span> <span class="Operator">:</span> filter <span class="Delimiter">(</span>isPrime primes'<span class="Delimiter">)</span> <span class="Delimiter">[</span><span class="Number">5</span><span class="Delimiter">,</span> <span class="Number">7</span> <span class="Conceal">…</span><span class="Delimiter">]</span>
+<span id="L5" class="LineNr"> 5 </span>
+<span id="L6" class="LineNr"> 6 </span>primeLim <span class="Operator">::</span> <span class="Delimiter">[</span><span class="Type">Int</span><span class="Delimiter">]</span>
+<span id="L7" class="LineNr"> 7 </span>primeLim <span class="Operator">=</span> takeWhile <span class="Delimiter">(</span><span class="Conceal">λ</span>x <span class="Conceal">→</span><span class="Conceal"> </span> x <span class="Operator">&lt;</span> <span class="Number">100000000</span><span class="Delimiter">)</span> primes
+<span id="L8" class="LineNr"> 8 </span>
+<span id="L9" class="LineNr"> 9 </span>genAll <span class="Operator">::</span> <span class="Type">Int</span> <span class="Conceal">→</span><span class="Conceal"> </span> <span class="Delimiter">[[</span><span class="Type">Int</span><span class="Delimiter">]]</span>
+<span id="L10" class="LineNr">10 </span>genAll n <span class="Operator">=</span> map <span class="Delimiter">(</span><span class="Conceal">λ</span>x <span class="Conceal">→</span><span class="Conceal"> </span> n<span class="Operator">:</span><span class="Delimiter">[</span>x<span class="Delimiter">])</span> <span class="Delimiter">(</span>takeWhile <span class="Delimiter">(</span><span class="Conceal">λ</span>x <span class="Conceal">→</span><span class="Conceal"> </span> x <span class="Conceal">≤</span> <span class="Delimiter">(</span><span class="Number">100000000</span> <span class="Conceal">÷</span> n<span class="Delimiter">))</span> primeLim<span class="Delimiter">)</span>
+<span id="L11" class="LineNr">11 </span>
+<span id="L12" class="LineNr">12 </span>primeTable <span class="Operator">::</span> <span class="Type">Int</span> <span class="Conceal">→</span><span class="Conceal"> </span> <span class="Delimiter">[</span><span class="Type">Int</span><span class="Delimiter">]</span>
+<span id="L13" class="LineNr">13 </span>primeTable x <span class="Operator">=</span> <span class="Delimiter">[</span><span class="Conditional">if</span> <span class="Delimiter">(</span>i <span class="Operator">`mod`</span> x <span class="Conceal">≡</span> <span class="Number">0</span><span class="Delimiter">)</span> <span class="Conditional">then</span> x <span class="Conditional">else</span> <span class="Number">0</span> <span class="Operator">|</span> i <span class="Conceal">←</span><span class="Conceal"> </span> <span class="Delimiter">[</span><span class="Number">1</span><span class="Conceal">…</span><span class="Number">100000000</span><span class="Delimiter">]]</span>
+<span id="L14" class="LineNr">14 </span>
+<span id="L15" class="LineNr">15 </span>allPrimeTable <span class="Operator">::</span> <span class="Delimiter">[[</span><span class="Type">Int</span><span class="Delimiter">]]</span>
+<span id="L16" class="LineNr">16 </span>allPrimeTable <span class="Operator">=</span> <span class="Delimiter">[</span>primeTable x <span class="Operator">|</span> x <span class="Conceal">←</span><span class="Conceal"> </span> primeLim<span class="Delimiter">]</span>
+<span id="L17" class="LineNr">17 </span>
+<span id="L18" class="LineNr">18 </span>primeFactorTable <span class="Operator">::</span> <span class="Delimiter">[[</span><span class="Type">Int</span><span class="Delimiter">]]</span>
+<span id="L19" class="LineNr">19 </span>primeFactorTable <span class="Operator">=</span> <span class="Delimiter">[</span>filter <span class="Delimiter">(</span><span class="Conceal">λ</span>x <span class="Conceal">→</span><span class="Conceal"> </span> x <span class="Conceal">≢</span> <span class="Number">0</span><span class="Delimiter">)</span> <span class="Delimiter">[(</span>allPrimeTable <span class="Conceal">‼</span> y<span class="Delimiter">)</span> <span class="Conceal">‼</span> x <span class="Operator">|</span> y <span class="Conceal">←</span><span class="Conceal"> </span> <span class="Delimiter">[</span><span class="Number">0</span><span class="Conceal">…</span><span class="Delimiter">(</span>length allPrimeTable <span class="Operator">-</span> <span class="Number">1</span><span class="Delimiter">)]]</span> <span class="Operator">|</span> x <span class="Conceal">←</span><span class="Conceal"> </span> <span class="Delimiter">[</span><span class="Number">0</span><span class="Conceal">…</span><span class="Number">99999999</span><span class="Delimiter">]]</span>
+<span id="L20" class="LineNr">20 </span><span class="Comment">--Instead of filtering zeros, could empty lists be used as a replacment, to help speed it up?</span>
+<span id="L21" class="LineNr">21 </span>totient <span class="Operator">::</span> <span class="Type">Int</span> <span class="Conceal">→</span><span class="Conceal"> </span> <span class="Delimiter">[</span><span class="Type">Int</span><span class="Delimiter">]</span> <span class="Conceal">→</span><span class="Conceal"> </span> <span class="Type">Int</span>
+<span id="L22" class="LineNr">22 </span>totient x y <span class="Operator">=</span> numerator <span class="Conceal">÷</span> denominator
+<span id="L23" class="LineNr">23 </span>  <span class="Structure">where</span> numerator <span class="Operator">=</span> x <span class="Operator">*</span> <span class="Delimiter">(</span><span class="Conceal">∏</span><span class="Delimiter">(</span>map <span class="Delimiter">(</span><span class="Conceal">λ</span>x <span class="Conceal">→</span><span class="Conceal"> </span> x <span class="Operator">-</span> <span class="Number">1</span><span class="Delimiter">)</span> y<span class="Delimiter">))</span>
+<span id="L24" class="LineNr">24 </span>        denominator <span class="Operator">=</span> <span class="Conceal">∏</span>y
+<span id="L25" class="LineNr">25 </span>
+<span id="L26" class="LineNr">26 </span>totientThing <span class="Operator">::</span> <span class="Delimiter">[</span><span class="Type">Int</span><span class="Delimiter">]</span>
+<span id="L27" class="LineNr">27 </span>totientThing <span class="Operator">=</span> <span class="Delimiter">[</span>x <span class="Operator">-</span> totient x <span class="Delimiter">(</span>primeFactorTable <span class="Conceal">‼</span> <span class="Delimiter">(</span>x <span class="Operator">-</span> <span class="Number">1</span><span class="Delimiter">))</span> <span class="Operator">|</span> x <span class="Conceal">←</span><span class="Conceal"> </span> <span class="Delimiter">[</span><span class="Number">1</span><span class="Conceal">…</span><span class="Number">100000000</span><span class="Delimiter">]]</span>
+<span id="L28" class="LineNr">28 </span>
+<span id="L29" class="LineNr">29 </span>answer <span class="Operator">::</span> <span class="Type">Int</span>
+<span id="L30" class="LineNr">30 </span>answer <span class="Operator">=</span> <span class="Conceal">∑</span><span class="Delimiter">(</span>totientThing<span class="Delimiter">)</span>
+<span id="L31" class="LineNr">31 </span>
+<span id="L32" class="LineNr">32 </span>main <span class="Operator">::</span> <span class="Type">IO</span><span class="Delimiter">()</span>
+<span id="L33" class="LineNr">33 </span>main <span class="Operator">=</span> print answer
+</pre>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
