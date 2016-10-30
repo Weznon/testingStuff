@@ -1,4 +1,6 @@
 import Employee
+import Data.Monoid
+import Data.Tree
 
 --1.1
 glCons :: Employee -> GuestList -> GuestList
@@ -22,9 +24,28 @@ moreFun gl1 gl2
 --2
 --treeFold :: (a -> b) -> Tree a -> b
 --This is not the correct type signature. from the lecture notes its
---:: b -> (b -> a -> b -> b) -> Tree a -> b
---wtf?
+treeFold :: (a -> [b] -> b) -> Tree a -> b
+treeFold f (Node a []) = f a []
+treeFold f (Node a forest) = f a (map (treeFold f) forest)
 
+--3
+nextLevel :: Employee -> [(GuestList, GuestList)] -> (GuestList, GuestList)
+nextLevel boss guestlist = ((glCons boss glWithBoss),glNoBoss)
+                          where unzipped = unzip guestlist
+                                glWithBoss = mconcat (fst unzipped)
+                                glNoBoss = mconcat (snd unzipped)
+--unziped turns it into two list of the guestlists
+--the mconcat turns all of the sub trees into one tree, under the new boss
+--then finally returns one with the boss, one without
+
+--4
+maxFun :: Tree Employee -> GuestList
+maxFun emp = pickMax (treeFold nextLevel emp)
+  where pickMax (gl1@(GL _ f1), gl2@(GL _ f2))
+         | f1 > f2 = gl1
+         | otherwise = gl2
+--takes maximum from the folded employees, using nextLevel as the fold
+--makes sense since next level returns both when the boss is there and not
 
 --Some test values
 bob :: Employee
@@ -42,11 +63,9 @@ glkb = (GL [kate, bob] 11)
 glbw :: GuestList
 glbw = (GL [bob, wen] 61)
 
+--5
 main :: IO()
 main = do
-        let bob = (Emp "Bob" 5)
-        let kate = (Emp "Kate" 6)
-        let wen = (Emp "Wen" 55)
-        let gl = (GL [kate, bob] 11)
-        putStrLn "boi"
-
+        let list = readFile company.txt
+        let maxi = maxFun $ read list
+        putStrLn
