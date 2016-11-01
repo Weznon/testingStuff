@@ -1,5 +1,7 @@
-<<<<<<< HEAD
 # testingCode
+This repo contains horrible code
+Why are you even here?
+Most of the stuff is probably broken/incomplete
 Testing Stuff, git so i can work on multiple computers
 
 ༼ つ ◕_◕ ༽つ
@@ -12,4 +14,4 @@ Testing Stuff, git so i can work on multiple computers
       ┌─┐
       ┴─┴ l
     (ಠ◡ಠ)/  Enjoy!
->>>>>>> f0a30b69c10fc4738573bf6b105a8fcef782e29a
+
