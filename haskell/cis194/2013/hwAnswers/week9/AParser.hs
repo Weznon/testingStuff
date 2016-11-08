@@ -70,6 +70,11 @@ first f (a, c) = (f a, c)
 
 --2
 
---instance Applicative Parser where
-  --pure      =
+instance Applicative Parser where
+  pure a  = Parser (\x -> Just (a, x))
+  --Take the a, put it into the Just with an input string
+  p1 <*> p2 = Parser f
+    where f str = case runParser p1 str of
+                    Nothing -> Nothing
+                    Just (fRes, sRes) -> first fRes <$> runParser p2 sRes
 
