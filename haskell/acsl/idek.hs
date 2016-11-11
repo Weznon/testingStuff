@@ -1,7 +1,5 @@
 import Data.Char
 
-data Instruction = Instruction Char Int
-
 charToValue :: Char -> Int
 charToValue 'a' = 1
 charToValue 'b' = 2
@@ -62,13 +60,13 @@ sumF  = sumFactors . primeFactor
 -- could almost certainly ne more efficient
 
 iOne :: Int -> Int
-iOne = (*) 2
+iOne = (* 2)
 
 iTwo :: Int -> Int
-iTwo x = (x `mod` 3) * 5
+iTwo x = (5 * (x `mod` 3))
 
 iThr :: Int -> Int
-iThr x = (x `div` 4) * (-8)
+iThr x = ((-8) * (x `div` 4))
 
 iFou ::  Int -> Int
 iFou = ((-12) *) . fromIntegral . toInteger . floor . realToFrac . sqrt . fromIntegral
@@ -82,7 +80,7 @@ eval (x, 2) = iTwo $ charToValue x
 eval (x, 3) = iThr $ charToValue x
 eval (x, 4) = iFou $ charToValue x
 eval (x, 5) = iFiv $ charToValue x
-eval _      = error "u fucked up"
+eval _      = error "error parsing. You likely have a char where there should be an int"
 
 --Should only be called with Strings of length two, since its will throw out the rest, throw an error if not
 parse :: String -> (Char, Int)
