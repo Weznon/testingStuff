@@ -60,7 +60,7 @@ posInt = Parser f
 --1
 
 instance Functor Parser where
-  fmap f (Parser a) = (Parser (fmap (first f) . a))
+  fmap f p1 = (Parser (\x -> (first f) <$> (runParser p1 x)))
 --this is because a is a function. so when its being used its treated as a Maybe (a, String) fmap here is being used in reference to a Maybe functor, not Parser functor. from the function composition the type remains the same
 --basically the types are really weird.like really weird
 --(fmap (first f) . a) is like String -> (Maybe (a, String) -> (a -> b) -> f b)
@@ -77,4 +77,6 @@ instance Applicative Parser where
     where f str = case runParser p1 str of
                     Nothing -> Nothing
                     Just (fRes, sRes) -> first fRes <$> runParser p2 sRes
-
+--3
+abParser :: Parser (Char, Char)
+abParser =
