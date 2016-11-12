@@ -78,5 +78,5 @@ instance Applicative Parser where
                     Nothing -> Nothing
                     Just (fRes, sRes) -> first fRes <$> runParser p2 sRes
 --3
-abParser :: Parser (Char, Char)
-abParser =
+--abParser :: Parser (Char, Char)
+--abParser =
