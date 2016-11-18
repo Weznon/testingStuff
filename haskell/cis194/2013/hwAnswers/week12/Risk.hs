@@ -48,7 +48,9 @@ invade bf@(Battlefield 1 _) = return bf
 invade bf@(Battlefield _ 1) = return bf
 invade bf = battle bf >>= invade
 --3
+num :: Int
 num = 1000
+
 successProb :: Battlefield -> Rand StdGen Double
 successProb bf = replicateM num (invade bf) >>= \x -> return $ fromIntegral (wins x) / fromIntegral num
   where wins = length . filter ((>1) . attackers)
