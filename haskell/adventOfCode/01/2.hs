@@ -96,3 +96,7 @@ main = print  (findFirst $ findDuplicates $ stripList $ listofpositions $ expand
 --[295,297,296,292,292,295,297,291]
 --doing this in ghci gave that the answer was one of those, but none of them work wtf
 --looks like were gonna have a v2 of this
+--
+--The issue was not counting intermediate steps
+--like from (0,0) and R2 skips over the fact you are at (1, 0) and only will list (2, 0) as a visited point
+--hence the no direction and the expanding of the instructions
