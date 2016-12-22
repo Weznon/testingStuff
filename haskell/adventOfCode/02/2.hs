@@ -57,7 +57,7 @@ input2 = "ULL\nRRDDD\nLURDL\nUUUUD"
 --not it, sadly
 --not sure why
 --main outputs the values that lead to that
-
+--9d8bc
 next :: (Int, Int) -> Dir -> (Int, Int)
 next (x, y) R
   | (x == 0 && (y == 2 || y == -2) || x == 1 && (y == 1 || y == -1) || x == 2 && y == 0) = (x, y)
@@ -65,10 +65,10 @@ next (x, y) R
 next (x, y) L
   | (x == 0 || (y == 2 || y == -2) || x == -1 && (y == 1 || y == -1) || x == -2 && y == 0) = (x, y)
   |otherwise = (x - 1, y)
-next (x, y) D
+next (x, y) U
   | (y == 0 && (x == 2 || x == -2) || y == 1 && (x == -1 || x == 1) || y == 2 && x == 0) = (x, y)
   |otherwise = (x, y + 1)
-next (x, y) U
+next (x, y) D
   | (y == 0 && (x == 2 || x == -2) || y == -1 && (x == -1 || x == 1) || y == -2 && x == 0)  = (x, y)
   |otherwise = (x, y - 1)
 
@@ -86,7 +86,9 @@ answer x (q, w, e, r, t) = (dO, dT, dH, dF, dI)
         dI = findNum dF t
 
 main :: IO()
-main = print $ answer (-2, 0) (parseComplete input)
+main = do
+  xs <- readFile "input"
+  print $ answer (-2, 0) (parseComplete $ xs)
 
 --Not 9728, 9728 is too low. Actual answer is higher
 --Not 9728, 9728 is too low. Actual answer is higher
