@@ -25,6 +25,9 @@ input = "LURLDDLDULRURDUDLRULRDLLRURDUDRLLRLRURDRULDLRLRRDDULUDULURULLURLURRRLLD
 input2 :: String
 input2 = "ULL\nRRDDD\nLURDL\nUUUUD"
 
+data Pos = Pos X Y
+
+data X = -1
 next :: Int -> Dir -> Int
 next x R
   | x == 3 || x == 6 || x == 9 = x
