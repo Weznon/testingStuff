@@ -22,4 +22,6 @@ input :: String
 input = "5 5 5"
 
 main :: IO()
-main = print $ findNum $ parseComplete input
+main = do
+  xs <- readFile "input"
+  print $ findNum $ parseComplete xs
