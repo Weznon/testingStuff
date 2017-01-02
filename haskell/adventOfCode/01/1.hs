@@ -50,7 +50,7 @@ change 0 x = (0, x)
 change 1 x = (x, 0)
 change 2 x = (0, -x)
 change 3 x = (-x, 0)
-change _ _ = (0, 0)
+--change _ _ = (0, 0)
 
 
 combine :: (Int, Int, Int) -> (Int, Int) -> (Int, Int, Int)
