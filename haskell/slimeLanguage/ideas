@@ -1,0 +1,24 @@
+"lore" of lanaugage is that the program is executed by a slime going through a dungeon
+
+when enemy is encountered something happens
+
+2-d language
+
+slime starts at ^, initially moves to right. can be redirected with |, -, /, \
+. is ignored, so 
+example path
+  /...^...|
+  .    /...\
+  .    .   .
+  .    .   .
+  \..../.../
+       .
+       .
+       .
+       End
+this starts by going to right, reflected to move left
+then follows the dots 
+
+enemies can be used as a standalone character, like A or B, or can be [A15] or [Cl] if they take arguements
+
+arguments levels?
