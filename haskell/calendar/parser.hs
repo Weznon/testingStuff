@@ -53,7 +53,6 @@ toSDate x = SDate (stringToDate x)
 toEDate :: String -> SubEvent
 toEDate x = EDate (stringToDate x)
 
-
 splitColon :: String -> (String, String)
 splitColon s = case dropWhile (== ':') s of
                       "" -> ([], [])
