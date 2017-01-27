@@ -6,4 +6,5 @@ import Types
 --Accomplishes this using bash commands since thats what I'm conformtable with
 --i think it should curl the page into a file(?) and then read from that file
 --htat will make lots of io stuff thoguh
---f
+--use the System.Processes library
+--runCommand "cat url" for example
