@@ -17,7 +17,7 @@ break;
                 else if (timer.milliseconds() > 2500){robot.drive(); commandNumber++;}
                 x=1;
                ;
-
+break;
             case 5:
                 if (y == 1)
                 {
@@ -41,4 +41,5 @@ case 0:
   asvfugba
   yuasrcgsdf
   usadfcn
+  break;
 case 5:
