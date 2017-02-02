@@ -1,8 +1,1 @@
-#!/bin/bash
-
-: '
-This script detects if you have missing break statements in your code, and will provide a helpful printout of the related code.
-https://regex101.com/r/0AqHNQ/13 is where this was developed
-
-
-'
+dMBFiles/detectMissingBreaks
