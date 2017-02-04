@@ -25,7 +25,7 @@ whoK :: IO String
 whoK =  readFile "/home/weznon/programming/git/scripts/test"
 
 args :: IO [String]
-args = unsafePerformIO getArgs
+args = getArgs
 
 file :: IO String
 file = if (head args == "-l") then (args >> = (\x -> return (x !! 1)) else (getCurrentDirectory >>=  ++ "/" ++ (args !! 0))
