@@ -27,23 +27,42 @@ whoK =  readFile "/home/weznon/programming/git/scripts/test"
 args :: IO [String]
 args = getArgs
 
-file :: IO String
-file = if (head args == "-l") then (args >> = (\x -> return (x !! 1)) else (getCurrentDirectory >>=  ++ "/" ++ (args !! 0))
+data Flag = Help | Direct String | Default String | NoArgs | DirectMiss
+  deriving (Show, Eq)
 
--- getting this to be nice is annyoing
--- look at the types and stuff to figure it out
--- cancer
+flagger :: [String] -> IO Flag
+flagger []             = return NoArgs
+flagger ("-d":[])      = return DirectMiss
+flagger ("-d":dest:xs) = return (Direct dest)
+flagger ("-h":xs)      = return Help
+flagger ("-l":[])      = return DirectMiss
+flagger ("-l":x:xs)    = return (Default x)
+flagger (x:xs)         = if ((head x) == '-') then return(Help) else return (Default x)
 
-fileContents :: IO String
-fileContents = readFile file
+useFlag :: Flag -> IO String
+useFlag Help       = return help
+useFlag DirectMiss = return help
+useFlag NoArgs     = return help
+useFlag (Direct x)   = search x
+useFlag (Default x)  = getCurrentDirectory >>= (\z -> return (z ++ "/" ++ x)) >>= (\u -> search u)
 
-matches :: [String]
-matches = getAllTextMatches (fileContents =~ regex :: AllTextMatches [] String)
+search :: String -> IO String
+search x = doesFileExist x >>= (\z -> if (not z) then return ("File Does Not Exist\n") else return "asd")
 
-main :: IO()
-main = results >>= (\x -> putStrLn x)
-          -- return
-          -- print (if (length args == 0) then "No arguments detected; will crash" else "reading: " ++ file)
+--replace "asd" in else with actual code
+--its the one that searcheds the file for regex
+--might call another function? might be easier then writing in on one line, it is kinda complicated iirc
+
+help :: String
+help = "Usage: detectMissingBreaks [OPTION] [FILE]\nSearches for missing break statements in currentDirectory/[FILE]\nOptions:\n  -d    Provide direct link to file (/home/weznon/.bashrc) instead of appending [FILE] to current directory\n  -h    Prints this help message\n  -l    Uses currentDirectory/[FILE], use when the file starts with \"-\""
+
+-- needs to be able to pass Nulp through it all, to account for a missing argument
+-- needs some form of error handling
+-- which would be noargs
+-- nulp is just no flag, which means to just
+
+
+
           -- print (show (length matches) ++ " matches found")
           -- mapM_ (\x -> putStrLn ("Missing a Break!\n" ++ x ++ "\n--------------------\n")) matches
 -- some links
