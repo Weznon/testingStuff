@@ -1,7 +1,8 @@
 import Text.Regex.PCRE
 import System.Environment
 import System.Directory
-import System.IO.Unsafe
+import Data.List
+
 --This haskell script auto detects when a java program is missing case statements
 --It will provide the complete match
 --Takes a command line argument of the file, starting from the running directory
@@ -54,7 +55,11 @@ thingie :: String -> IO [String]
 thingie x = readFile x >>= (\z -> return (getAllTextMatches (z =~ regex :: AllTextMatches [] String)))
 
 final :: String -> IO String
-final x = thingie x >>=
+final x = thingie x >>= (\matches -> if (length (matches) == 0) then return "No matches found.\nAll break statements are present" else return ("Matches were found\nCode Snippets will be printed\n" ++ intercalate "--------------------\nMatch found:\n" matches))
+
+main :: IO()
+main = (args >>= \z2 -> flagger z2 >>= \z1 -> useFlag z1 >>= \z -> putStrLn z)
+
 --replace "asd" in else with actual code
 --its the one that searcheds the file for regex
 --might call another function? might be easier then writing in on one line, it is kinda complicated iirc
