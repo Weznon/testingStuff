@@ -47,8 +47,14 @@ useFlag (Direct x)   = search x
 useFlag (Default x)  = getCurrentDirectory >>= (\z -> return (z ++ "/" ++ x)) >>= (\u -> search u)
 
 search :: String -> IO String
-search x = doesFileExist x >>= (\z -> if (not z) then return ("File Does Not Exist\n") else return "asd")
+search x = doesFileExist x >>= (\z -> if (not z) then return ("File Does Not Exist\n") else final x)
+--so should take the boolean type of =~ and get it to eithe return clear or matches
+--so idek i give upppppp
+thingie :: String -> IO [String]
+thingie x = readFile x >>= (\z -> return (getAllTextMatches (z =~ regex :: AllTextMatches [] String)))
 
+final :: String -> IO String
+final x = thingie x >>=
 --replace "asd" in else with actual code
 --its the one that searcheds the file for regex
 --might call another function? might be easier then writing in on one line, it is kinda complicated iirc
