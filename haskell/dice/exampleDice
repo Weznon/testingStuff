@@ -1,0 +1,20 @@
+Some examples
+
+d20 - roll value from 1-20 (13)
+d5 - roll value from 1-5 (2)
+3d6 - roll 3 d6s, return sum and all values ([5, 3, 4], 12)
+dF = rolls a -1, 0 or 1
+K - keep highest roll
+X - drop highest roll
+R - reroll lowest value possible whenever it appears
+k - keep lowest roll
+x - drop lowest roll
+r - reroll lowest possible value only once
+! - roll another die when max possible value is rolled
+!! - compound die when max value is rolled, so add to initital total
+<=
+>= 
+!p - explode with -1 modifier every time max is rolled
+f
++
+-
