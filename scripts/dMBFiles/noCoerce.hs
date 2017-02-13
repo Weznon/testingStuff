@@ -32,20 +32,25 @@ data Flag = Help | Direct String | Default String | NoArgs | DirectMiss
   deriving (Show, Eq)
 
 flagger :: [String] -> IO Flag
-flagger []             = return NoArgs
-flagger ("-d":[])      = return DirectMiss
-flagger ("-d":dest:xs) = return (Direct dest)
-flagger ("-h":xs)      = return Help
-flagger ("-l":[])      = return DirectMiss
-flagger ("-l":x:xs)    = return (Default x)
-flagger (x:xs)         = if ((head x) == '-') then return(Help) else return (Default x)
+flagger []                   = return NoArgs
+flagger ("-d":[])            = return DirectMiss
+flagger ("--direct":[])      = return DirectMiss
+flagger ("-d":dest:xs)       = return (Direct dest)
+flagger ("--direct":dest:xs) = return (Direct dest)
+flagger ("-h":xs)            = return Help
+flagger ("--help":xs)        = return Help
+flagger ("-l":[])            = return DirectMiss
+flagger ("--long":[])        = return DirectMiss
+flagger ("-l":x:xs)          = return (Default x)
+flagger ("--long":x:xs)      = return (Default x)
+flagger (x:xs)               = if ((head x) == '-') then return(Help) else return (Default x)
 
 useFlag :: Flag -> IO String
-useFlag Help       = return help
-useFlag DirectMiss = return help
-useFlag NoArgs     = return help
-useFlag (Direct x)   = search x
-useFlag (Default x)  = getCurrentDirectory >>= (\z -> return (z ++ "/" ++ x)) >>= (\u -> search u)
+useFlag Help        = return help
+useFlag DirectMiss  = return help
+useFlag NoArgs      = return help
+useFlag (Direct x)  = search x
+useFlag (Default x) = getCurrentDirectory >>= (\z -> return (z ++ "/" ++ x)) >>= (\u -> search u)
 
 search :: String -> IO String
 search x = doesFileExist x >>= (\z -> if (not z) then return ("File Does Not Exist\n") else final x)
