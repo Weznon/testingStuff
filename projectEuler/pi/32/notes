@@ -1,0 +1,46 @@
+evaluate the left side, the multiplicand/multiplier
+
+have to do 2 - 5 digits on the left side
+
+generate all the possible ones, then check to see if its pandigital?
+
+max digits on left is 5 i think
+ 
+since 100 * 100 = 10000 which is 11 digits
+
+so thus 
+
+2 digits cant be it either
+since 2 digits at max result in 2 on right
+so 4 total
+
+same for 3/4
+so it has to be 5 on left
+
+coolio
+
+that makes it much easier
+
+so find all orderings of 
+
+i think thats 15120 possible orderinsg
+
+thats actually not that many
+
+coolio
+
+i could generate all unique groups of 5 then shuffle
+
+or generate all unique orders of the groups of 5 and split on different parts
+
+which would be easier
+
+hrm
+
+definitely doing the all orders even though there will be 
+
+95678 and 98765 will be generated
+
+use list comprehensions to generate? i tihnk that could work 
+
+i think i have this planned out
